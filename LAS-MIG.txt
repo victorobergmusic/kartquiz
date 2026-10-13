@@ -29,31 +29,26 @@ offlineapp. Service worker sparar appens egna filer, inte en offlinekarta.
 Poäng, frågenummer, flik och norrfilter sparas lokalt på enheten.
 En ny fråga genereras vid omstart. Rensad webbplatsdata tar bort poängen.
 
-ÄNDRINGAR
-- Mobilanpassning med större knappar, säkerhetsmarginaler och sidrullning.
-- Mer utzoomat kartutsnitt; Centrera återställer frågans zoomnivå.
-- Kommunalternativ enbart från samma län. Normalt sex alternativ,
-  fem för Blekinge. Gotland utgår ur kommunquizet då det bara finns
-  en kommun; Gotland finns kvar bland befolkningsfrågorna.
-- Befolkning: ungefär lika många frågor om regioner som om kommuner.
-  Regionernas befolkning avser motsvarande län. Inga landskapsfrågor
-  i befolkningsquizet; separat landskapsflik finns kvar.
-- Samma avrundning för samtliga befolkningsalternativ.
-- Tydlig rätt/fel-text samt kartkällornas attribution.
+ÄNDRINGAR I VERSION 2
+Alla 290 kommuner är möjliga frågor i kommun- och befolkningsquizet.
+Alla 21 län och regioner ingår. Befolkningen är från SCB 2024.
+Gotland ingår igen. Sex unika alternativ visas alltid i kommunquizet:
+först andra kommuner i samma län, sedan slumpade kommuner från övriga
+Sverige om länet har färre än sex kommuner. Gotland får fem alternativ
+från övriga Sverige, Blekinge ett. Kartpunkter ligger inom respektive
+kommunpolygon; punkterna behöver inte vara centralorter.
+Norrfiltret styr frågepunkten (latitud minst 59,55), inte utfyllnadsalternativ.
 
-UNDERLAG OCH BEGRÄNSNINGAR
-Originalets kommunurval, referenspunkter och befolkningstal är kvar.
-Tillagda kommunnamn används endast som svarsalternativ. Appen innehåller
-inte alla 290 kommuner som möjliga frågor. Befolkningstalen saknar årtal
-och är inte uppdaterade eller verifierade som aktuell SCB-statistik.
-Norrfiltret använder originalets gräns latitud 59,55 för frågepunkten;
-kommunalternativ hämtas ändå från hela samma län.
-Originalets CARTO-konfiguration och externa gränskällor används.
+UPPDATERA
+Ersätt filerna på din webbplats med samtliga filer i detta paket.
+Stäng appen och öppna den på nytt med internetanslutning.
 
 KONTROLL
-JavaScript-syntax och 1 000 genererade kommun-/befolkningspar har
-kontrollerats automatiskt (länstillhörighet, antal alternativ,
-norrfilter och frågetyper). Inte provkörd på en fysisk iPhone.
+Alla 290 kommunkoder har matchats mot SCB. Befolkningen per län har
+kontrollerats mot summan av länets kommuner. Alla kartpunkter ligger
+inom den tillhörande kommunpolygonen. Alternativlogiken kontrolleras
+för varje kommun, inklusive Gotland och Blekinge.
+Inte provkörd på en fysisk iPhone.
 
 KÄLLOR FÖR INSTALLATION
 https://support.apple.com/sv-se/guide/iphone/iphea86e5236/ios

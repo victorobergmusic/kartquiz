@@ -457,7 +457,7 @@
       <div class="options-grid" id="options-box"></div>
       <div id="stat-feedback" role="status" aria-live="polite"></div>
       <button id="next-btn">NÄSTA FRÅGA ➔</button>
-      <p class="data-note">Befolkning: ungefärliga tal från originalunderlaget, årtal saknas. Regionfrågor avser befolkningen inom motsvarande län. Kommunfrågor bygger på ett urval av kommuner. Kartan kräver internet.</p>
+      <p class="data-note">Befolkning: SCB, 31 december 2024; avrundade svarsalternativ. Alla 290 kommuner och 21 län ingår. Regionfrågor avser motsvarande län. Saknas sex kommuner i länet fylls alternativen ut från övriga Sverige. Kartan kräver internet.</p>
     </div>
   </main>
 
@@ -474,27 +474,27 @@
        GEOGRAFISK & STATISTISK DATABAS (SCB)
     ========================================================== */
     const LAN_DATA = [
-      { namn: "Stockholms län", pop: 2455000, lat: 59.33, lng: 18.06, info: "Residensstad: Stockholm | 26 kommuner" },
-      { namn: "Uppsala län", pop: 404000, lat: 59.86, lng: 17.64, info: "Residensstad: Uppsala | 8 kommuner" },
-      { namn: "Södermanlands län", pop: 303000, lat: 58.75, lng: 17.00, info: "Residensstad: Nyköping | 9 kommuner" },
-      { namn: "Östergötlands län", pop: 472000, lat: 58.41, lng: 15.62, info: "Residensstad: Linköping | 13 kommuner" },
-      { namn: "Jönköpings län", pop: 369000, lat: 57.78, lng: 14.16, info: "Residensstad: Jönköping | 13 kommuner" },
-      { namn: "Kronobergs län", pop: 204000, lat: 56.88, lng: 14.81, info: "Residensstad: Växjö | 8 kommuner" },
-      { namn: "Kalmar län", pop: 247000, lat: 56.66, lng: 16.36, info: "Residensstad: Kalmar | Inkluderar Öland" },
-      { namn: "Gotlands län", pop: 61000, lat: 57.50, lng: 18.40, info: "Residensstad: Visby | Region Gotland" },
-      { namn: "Blekinge län", pop: 158000, lat: 56.16, lng: 15.59, info: "Residensstad: Karlskrona | 5 kommuner" },
-      { namn: "Skåne län", pop: 1420000, lat: 55.60, lng: 13.00, info: "Residensstad: Malmö | 33 kommuner" },
-      { namn: "Hallands län", pop: 344000, lat: 56.67, lng: 12.86, info: "Residensstad: Halmstad | 6 kommuner" },
-      { namn: "Västra Götalands län", pop: 1765000, lat: 57.71, lng: 11.97, info: "Residensstad: Göteborg | 49 kommuner" },
-      { namn: "Värmlands län", pop: 284000, lat: 59.80, lng: 13.20, info: "Residensstad: Karlstad | 16 kommuner" },
-      { namn: "Örebro län", pop: 308000, lat: 59.27, lng: 15.21, info: "Residensstad: Örebro | 12 kommuner" },
-      { namn: "Västmanlands län", pop: 280000, lat: 59.61, lng: 16.54, info: "Residensstad: Västerås | 10 kommuner" },
-      { namn: "Dalarnas län", pop: 288000, lat: 60.60, lng: 15.63, info: "Residensstad: Falun | 15 kommuner" },
-      { namn: "Gävleborgs län", pop: 287000, lat: 60.67, lng: 17.14, info: "Residensstad: Gävle | 10 kommuner" },
-      { namn: "Västernorrlands län", pop: 242000, lat: 62.63, lng: 17.94, info: "Residensstad: Härnösand | 7 kommuner" },
-      { namn: "Jämtlands län", pop: 133000, lat: 63.18, lng: 14.64, info: "Residensstad: Östersund | 8 kommuner" },
-      { namn: "Västerbottens län", pop: 278000, lat: 63.83, lng: 20.26, info: "Residensstad: Umeå | 15 kommuner" },
-      { namn: "Norrbottens län", pop: 249000, lat: 65.58, lng: 22.15, info: "Residensstad: Luleå | 14 kommuner" }
+      { namn: "Stockholms län", pop: 2473307, lat: 59.33, lng: 18.06, info: "Residensstad: Stockholm | 26 kommuner" },
+      { namn: "Uppsala län", pop: 407912, lat: 59.86, lng: 17.64, info: "Residensstad: Uppsala | 8 kommuner" },
+      { namn: "Södermanlands län", pop: 301542, lat: 58.75, lng: 17.00, info: "Residensstad: Nyköping | 9 kommuner" },
+      { namn: "Östergötlands län", pop: 472446, lat: 58.41, lng: 15.62, info: "Residensstad: Linköping | 13 kommuner" },
+      { namn: "Jönköpings län", pop: 370009, lat: 57.78, lng: 14.16, info: "Residensstad: Jönköping | 13 kommuner" },
+      { namn: "Kronobergs län", pop: 203351, lat: 56.88, lng: 14.81, info: "Residensstad: Växjö | 8 kommuner" },
+      { namn: "Kalmar län", pop: 246352, lat: 56.66, lng: 16.36, info: "Residensstad: Kalmar | Inkluderar Öland" },
+      { namn: "Gotlands län", pop: 60971, lat: 57.50, lng: 18.40, info: "Residensstad: Visby | Region Gotland" },
+      { namn: "Blekinge län", pop: 157223, lat: 56.16, lng: 15.59, info: "Residensstad: Karlskrona | 5 kommuner" },
+      { namn: "Skåne län", pop: 1428626, lat: 55.60, lng: 13.00, info: "Residensstad: Malmö | 33 kommuner" },
+      { namn: "Hallands län", pop: 345074, lat: 56.67, lng: 12.86, info: "Residensstad: Halmstad | 6 kommuner" },
+      { namn: "Västra Götalands län", pop: 1772821, lat: 57.71, lng: 11.97, info: "Residensstad: Göteborg | 49 kommuner" },
+      { namn: "Värmlands län", pop: 283384, lat: 59.80, lng: 13.20, info: "Residensstad: Karlstad | 16 kommuner" },
+      { namn: "Örebro län", pop: 308375, lat: 59.27, lng: 15.21, info: "Residensstad: Örebro | 12 kommuner" },
+      { namn: "Västmanlands län", pop: 281158, lat: 59.61, lng: 16.54, info: "Residensstad: Västerås | 10 kommuner" },
+      { namn: "Dalarnas län", pop: 286546, lat: 60.60, lng: 15.63, info: "Residensstad: Falun | 15 kommuner" },
+      { namn: "Gävleborgs län", pop: 284558, lat: 60.67, lng: 17.14, info: "Residensstad: Gävle | 10 kommuner" },
+      { namn: "Västernorrlands län", pop: 241458, lat: 62.63, lng: 17.94, info: "Residensstad: Härnösand | 7 kommuner" },
+      { namn: "Jämtlands län", pop: 132839, lat: 63.18, lng: 14.64, info: "Residensstad: Östersund | 8 kommuner" },
+      { namn: "Västerbottens län", pop: 281138, lat: 63.83, lng: 20.26, info: "Residensstad: Umeå | 15 kommuner" },
+      { namn: "Norrbottens län", pop: 248620, lat: 65.58, lng: 22.15, info: "Residensstad: Luleå | 14 kommuner" }
     ];
 
     const LANDSKAP_DATA = [
@@ -526,68 +526,2327 @@
     ];
 
     const KOMMUNER_BASE = [
-      { namn: "Kiruna", lan: "Norrbottens län", pop: 22500, lat: 67.855, lng: 20.225 },
-      { namn: "Gällivare", lan: "Norrbottens län", pop: 17200, lat: 67.133, lng: 20.659 },
-      { namn: "Jokkmokk", lan: "Norrbottens län", pop: 4800, lat: 66.606, lng: 19.825 },
-      { namn: "Pajala", lan: "Norrbottens län", pop: 5900, lat: 67.213, lng: 23.366 },
-      { namn: "Övertorneå", lan: "Norrbottens län", pop: 4200, lat: 66.388, lng: 23.654 },
-      { namn: "Kalix", lan: "Norrbottens län", pop: 15600, lat: 65.854, lng: 23.141 },
-      { namn: "Haparanda", lan: "Norrbottens län", pop: 9200, lat: 65.835, lng: 24.135 },
-      { namn: "Boden", lan: "Norrbottens län", pop: 28000, lat: 65.825, lng: 21.688 },
-      { namn: "Luleå", lan: "Norrbottens län", pop: 79000, lat: 65.584, lng: 22.156 },
-      { namn: "Piteå", lan: "Norrbottens län", pop: 42400, lat: 65.317, lng: 21.479 },
-      { namn: "Arvidsjaur", lan: "Norrbottens län", pop: 6100, lat: 65.590, lng: 19.183 },
-      { namn: "Arjeplog", lan: "Norrbottens län", pop: 2650, lat: 66.051, lng: 17.892 },
-      { namn: "Sorsele", lan: "Västerbottens län", pop: 2400, lat: 65.534, lng: 17.525 },
-      { namn: "Storuman", lan: "Västerbottens län", pop: 5700, lat: 65.096, lng: 17.117 },
-      { namn: "Vilhelmina", lan: "Västerbottens län", pop: 6400, lat: 64.627, lng: 16.655 },
-      { namn: "Dorotea", lan: "Västerbottens län", pop: 2400, lat: 64.260, lng: 16.411 },
-      { namn: "Lycksele", lan: "Västerbottens län", pop: 12100, lat: 64.595, lng: 18.674 },
-      { namn: "Bjurholm", lan: "Västerbottens län", pop: 2370, lat: 63.931, lng: 19.215 },
-      { namn: "Umeå", lan: "Västerbottens län", pop: 133000, lat: 63.825, lng: 20.263 },
-      { namn: "Skellefteå", lan: "Västerbottens län", pop: 75000, lat: 64.750, lng: 20.952 },
-      { namn: "Örnsköldsvik", lan: "Västernorrlands län", pop: 55600, lat: 63.290, lng: 18.715 },
-      { namn: "Sollefteå", lan: "Västernorrlands län", pop: 18600, lat: 63.167, lng: 17.267 },
-      { namn: "Härnösand", lan: "Västernorrlands län", pop: 24600, lat: 62.632, lng: 17.937 },
-      { namn: "Sundsvall", lan: "Västernorrlands län", pop: 99000, lat: 62.390, lng: 17.306 },
-      { namn: "Åre", lan: "Jämtlands län", pop: 12200, lat: 63.399, lng: 13.081 },
-      { namn: "Östersund", lan: "Jämtlands län", pop: 64000, lat: 63.179, lng: 14.635 },
-      { namn: "Härjedalen", lan: "Jämtlands län", pop: 10100, lat: 62.030, lng: 14.360 },
-      { namn: "Ljusdal", lan: "Gävleborgs län", pop: 18700, lat: 61.829, lng: 16.096 },
-      { namn: "Hudiksvall", lan: "Gävleborgs län", pop: 37600, lat: 61.728, lng: 17.106 },
-      { namn: "Bollnäs", lan: "Gävleborgs län", pop: 26300, lat: 61.348, lng: 16.395 },
-      { namn: "Sandviken", lan: "Gävleborgs län", pop: 39100, lat: 60.621, lng: 16.775 },
-      { namn: "Gävle", lan: "Gävleborgs län", pop: 103000, lat: 60.674, lng: 17.141 },
-      { namn: "Mora", lan: "Dalarnas län", pop: 20500, lat: 61.004, lng: 14.537 },
-      { namn: "Leksand", lan: "Dalarnas län", pop: 16000, lat: 60.731, lng: 14.998 },
-      { namn: "Falun", lan: "Dalarnas län", pop: 60000, lat: 60.603, lng: 15.626 },
-      { namn: "Borlänge", lan: "Dalarnas län", pop: 52000, lat: 60.485, lng: 15.434 },
-      { namn: "Malung-Sälen", lan: "Dalarnas län", pop: 10200, lat: 60.683, lng: 13.714 },
-      { namn: "Avesta", lan: "Dalarnas län", pop: 22600, lat: 60.147, lng: 16.173 },
-      { namn: "Uppsala", lan: "Uppsala län", pop: 245000, lat: 59.858, lng: 17.638 },
-      { namn: "Enköping", lan: "Uppsala län", pop: 48000, lat: 59.635, lng: 17.078 },
-      { namn: "Norrtälje", lan: "Stockholms län", pop: 65000, lat: 59.758, lng: 18.705 },
-      { namn: "Sigtuna", lan: "Stockholms län", pop: 51000, lat: 59.617, lng: 17.723 },
-      { namn: "Västerås", lan: "Västmanlands län", pop: 159000, lat: 59.610, lng: 16.544 },
-      { namn: "Sala", lan: "Västmanlands län", pop: 23000, lat: 59.920, lng: 16.605 },
-      { namn: "Sunne", lan: "Värmlands län", pop: 13300, lat: 59.837, lng: 13.143 },
-      { namn: "Torsby", lan: "Värmlands län", pop: 11500, lat: 60.136, lng: 13.008 },
-      { namn: "Stockholm", lan: "Stockholms län", pop: 988000, lat: 59.329, lng: 18.068 },
-      { namn: "Göteborg", lan: "Västra Götalands län", pop: 604000, lat: 57.708, lng: 11.974 },
-      { namn: "Malmö", lan: "Skåne län", pop: 362000, lat: 55.605, lng: 13.003 },
-      { namn: "Linköping", lan: "Östergötlands län", pop: 167000, lat: 58.410, lng: 15.621 },
-      { namn: "Örebro", lan: "Örebro län", pop: 159000, lat: 59.275, lng: 15.213 },
-      { namn: "Helsingborg", lan: "Skåne län", pop: 151000, lat: 56.046, lng: 12.694 },
-      { namn: "Jönköping", lan: "Jönköpings län", pop: 146000, lat: 57.782, lng: 14.161 },
-      { namn: "Lund", lan: "Skåne län", pop: 130000, lat: 55.704, lng: 13.191 },
-      { namn: "Borås", lan: "Västra Götalands län", pop: 114000, lat: 57.721, lng: 12.940 },
-      { namn: "Halmstad", lan: "Hallands län", pop: 105000, lat: 56.674, lng: 12.857 },
-      { namn: "Växjö", lan: "Kronobergs län", pop: 97000, lat: 56.877, lng: 14.809 },
-      { namn: "Karlstad", lan: "Värmlands län", pop: 96000, lat: 59.379, lng: 13.503 },
-      { namn: "Kalmar", lan: "Kalmar län", pop: 72000, lat: 56.663, lng: 16.361 },
-      { namn: "Karlskrona", lan: "Blekinge län", pop: 67000, lat: 56.161, lng: 15.586 },
-      { namn: "Gotland (Visby)", lan: "Gotlands län", pop: 61000, lat: 57.634, lng: 18.294 }
-    ];
+  {
+    "kod": "0114",
+    "namn": "Upplands Väsby",
+    "lan": "Stockholms län",
+    "pop": 50323,
+    "lat": 59.5213244858,
+    "lng": 17.9051718378
+  },
+  {
+    "kod": "0115",
+    "namn": "Vallentuna",
+    "lan": "Stockholms län",
+    "pop": 35119,
+    "lat": 59.5876493797,
+    "lng": 18.1983918442
+  },
+  {
+    "kod": "0117",
+    "namn": "Österåker",
+    "lan": "Stockholms län",
+    "pop": 49787,
+    "lat": 59.5020438504,
+    "lng": 18.557460557
+  },
+  {
+    "kod": "0120",
+    "namn": "Värmdö",
+    "lan": "Stockholms län",
+    "pop": 46635,
+    "lat": 59.3086659228,
+    "lng": 18.8034431266
+  },
+  {
+    "kod": "0123",
+    "namn": "Järfälla",
+    "lan": "Stockholms län",
+    "pop": 88950,
+    "lat": 59.4332804896,
+    "lng": 17.8186679654
+  },
+  {
+    "kod": "0125",
+    "namn": "Ekerö",
+    "lan": "Stockholms län",
+    "pop": 28910,
+    "lat": 59.3522790739,
+    "lng": 17.6485964576
+  },
+  {
+    "kod": "0126",
+    "namn": "Huddinge",
+    "lan": "Stockholms län",
+    "pop": 114304,
+    "lat": 59.2139441724,
+    "lng": 18.0164806931
+  },
+  {
+    "kod": "0127",
+    "namn": "Botkyrka",
+    "lan": "Stockholms län",
+    "pop": 95905,
+    "lat": 59.1589099449,
+    "lng": 17.819988033
+  },
+  {
+    "kod": "0128",
+    "namn": "Salem",
+    "lan": "Stockholms län",
+    "pop": 17507,
+    "lat": 59.2389237226,
+    "lng": 17.6892500129
+  },
+  {
+    "kod": "0136",
+    "namn": "Haninge",
+    "lan": "Stockholms län",
+    "pop": 100895,
+    "lat": 59.023056127,
+    "lng": 18.2840806194
+  },
+  {
+    "kod": "0138",
+    "namn": "Tyresö",
+    "lan": "Stockholms län",
+    "pop": 49179,
+    "lat": 59.21543385,
+    "lng": 18.3266307455
+  },
+  {
+    "kod": "0139",
+    "namn": "Upplands-Bro",
+    "lan": "Stockholms län",
+    "pop": 32868,
+    "lat": 59.52625601,
+    "lng": 17.6513313014
+  },
+  {
+    "kod": "0140",
+    "namn": "Nykvarn",
+    "lan": "Stockholms län",
+    "pop": 12342,
+    "lat": 59.1937926858,
+    "lng": 17.3950453305
+  },
+  {
+    "kod": "0160",
+    "namn": "Täby",
+    "lan": "Stockholms län",
+    "pop": 77744,
+    "lat": 59.4656413468,
+    "lng": 18.0714649054
+  },
+  {
+    "kod": "0162",
+    "namn": "Danderyd",
+    "lan": "Stockholms län",
+    "pop": 32425,
+    "lat": 59.4062848013,
+    "lng": 18.054439162
+  },
+  {
+    "kod": "0163",
+    "namn": "Sollentuna",
+    "lan": "Stockholms län",
+    "pop": 77624,
+    "lat": 59.4511405154,
+    "lng": 17.9308014617
+  },
+  {
+    "kod": "0180",
+    "namn": "Stockholm",
+    "lan": "Stockholms län",
+    "pop": 995574,
+    "lat": 59.3220287061,
+    "lng": 17.9968903715
+  },
+  {
+    "kod": "0181",
+    "namn": "Södertälje",
+    "lan": "Stockholms län",
+    "pop": 102911,
+    "lat": 59.102350472,
+    "lng": 17.542550504
+  },
+  {
+    "kod": "0182",
+    "namn": "Nacka",
+    "lan": "Stockholms län",
+    "pop": 112112,
+    "lat": 59.3003399972,
+    "lng": 18.2543302498
+  },
+  {
+    "kod": "0183",
+    "namn": "Sundbyberg",
+    "lan": "Stockholms län",
+    "pop": 56274,
+    "lat": 59.3782879811,
+    "lng": 17.960204641
+  },
+  {
+    "kod": "0184",
+    "namn": "Solna",
+    "lan": "Stockholms län",
+    "pop": 85789,
+    "lat": 59.3690259313,
+    "lng": 18.0083157057
+  },
+  {
+    "kod": "0186",
+    "namn": "Lidingö",
+    "lan": "Stockholms län",
+    "pop": 48377,
+    "lat": 59.3646689493,
+    "lng": 18.1813722682
+  },
+  {
+    "kod": "0187",
+    "namn": "Vaxholm",
+    "lan": "Stockholms län",
+    "pop": 11822,
+    "lat": 59.4017649239,
+    "lng": 18.3019190942
+  },
+  {
+    "kod": "0188",
+    "namn": "Norrtälje",
+    "lan": "Stockholms län",
+    "pop": 66585,
+    "lat": 59.7884877684,
+    "lng": 18.8397393055
+  },
+  {
+    "kod": "0191",
+    "namn": "Sigtuna",
+    "lan": "Stockholms län",
+    "pop": 52767,
+    "lat": 59.648408222,
+    "lng": 17.8908040774
+  },
+  {
+    "kod": "0192",
+    "namn": "Nynäshamn",
+    "lan": "Stockholms län",
+    "pop": 30579,
+    "lat": 58.8975887668,
+    "lng": 17.8846309997
+  },
+  {
+    "kod": "0305",
+    "namn": "Håbo",
+    "lan": "Uppsala län",
+    "pop": 22973,
+    "lat": 59.6269271695,
+    "lng": 17.503355759
+  },
+  {
+    "kod": "0319",
+    "namn": "Älvkarleby",
+    "lan": "Uppsala län",
+    "pop": 9552,
+    "lat": 60.5761584379,
+    "lng": 17.4659868343
+  },
+  {
+    "kod": "0330",
+    "namn": "Knivsta",
+    "lan": "Uppsala län",
+    "pop": 21193,
+    "lat": 59.7543110426,
+    "lng": 17.8578890127
+  },
+  {
+    "kod": "0331",
+    "namn": "Heby",
+    "lan": "Uppsala län",
+    "pop": 14345,
+    "lat": 60.0892258553,
+    "lng": 17.0148616188
+  },
+  {
+    "kod": "0360",
+    "namn": "Tierp",
+    "lan": "Uppsala län",
+    "pop": 21104,
+    "lat": 60.3887997995,
+    "lng": 17.6669200396
+  },
+  {
+    "kod": "0380",
+    "namn": "Uppsala",
+    "lan": "Uppsala län",
+    "pop": 248016,
+    "lat": 59.9449428885,
+    "lng": 17.7164863684
+  },
+  {
+    "kod": "0381",
+    "namn": "Enköping",
+    "lan": "Uppsala län",
+    "pop": 48591,
+    "lat": 59.6631826117,
+    "lng": 17.1434867457
+  },
+  {
+    "kod": "0382",
+    "namn": "Östhammar",
+    "lan": "Uppsala län",
+    "pop": 22138,
+    "lat": 60.2547811866,
+    "lng": 18.2714480392
+  },
+  {
+    "kod": "0428",
+    "namn": "Vingåker",
+    "lan": "Södermanlands län",
+    "pop": 8750,
+    "lat": 59.0599775539,
+    "lng": 15.8863659646
+  },
+  {
+    "kod": "0461",
+    "namn": "Gnesta",
+    "lan": "Södermanlands län",
+    "pop": 11458,
+    "lat": 59.0822740358,
+    "lng": 17.1489275979
+  },
+  {
+    "kod": "0480",
+    "namn": "Nyköping",
+    "lan": "Södermanlands län",
+    "pop": 58344,
+    "lat": 58.7932007093,
+    "lng": 16.9896911966
+  },
+  {
+    "kod": "0481",
+    "namn": "Oxelösund",
+    "lan": "Södermanlands län",
+    "pop": 12031,
+    "lat": 58.6721047703,
+    "lng": 17.1181455372
+  },
+  {
+    "kod": "0482",
+    "namn": "Flen",
+    "lan": "Södermanlands län",
+    "pop": 15362,
+    "lat": 59.0655069978,
+    "lng": 16.7017123345
+  },
+  {
+    "kod": "0483",
+    "namn": "Katrineholm",
+    "lan": "Södermanlands län",
+    "pop": 34154,
+    "lat": 59.0134718195,
+    "lng": 16.2667176557
+  },
+  {
+    "kod": "0484",
+    "namn": "Eskilstuna",
+    "lan": "Södermanlands län",
+    "pop": 107203,
+    "lat": 59.3181772378,
+    "lng": 16.4238310946
+  },
+  {
+    "kod": "0486",
+    "namn": "Strängnäs",
+    "lan": "Södermanlands län",
+    "pop": 39313,
+    "lat": 59.3563301892,
+    "lng": 17.069277288
+  },
+  {
+    "kod": "0488",
+    "namn": "Trosa",
+    "lan": "Södermanlands län",
+    "pop": 14927,
+    "lat": 58.829279222,
+    "lng": 17.5680796988
+  },
+  {
+    "kod": "0509",
+    "namn": "Ödeshög",
+    "lan": "Östergötlands län",
+    "pop": 5237,
+    "lat": 58.203725475,
+    "lng": 14.7097440898
+  },
+  {
+    "kod": "0512",
+    "namn": "Ydre",
+    "lan": "Östergötlands län",
+    "pop": 3626,
+    "lat": 57.855499909,
+    "lng": 15.2550968293
+  },
+  {
+    "kod": "0513",
+    "namn": "Kinda",
+    "lan": "Östergötlands län",
+    "pop": 9957,
+    "lat": 57.9991810384,
+    "lng": 15.7301440414
+  },
+  {
+    "kod": "0560",
+    "namn": "Boxholm",
+    "lan": "Östergötlands län",
+    "pop": 5517,
+    "lat": 58.14221727,
+    "lng": 15.1221723436
+  },
+  {
+    "kod": "0561",
+    "namn": "Åtvidaberg",
+    "lan": "Östergötlands län",
+    "pop": 11467,
+    "lat": 58.2243479613,
+    "lng": 16.1100158099
+  },
+  {
+    "kod": "0562",
+    "namn": "Finspång",
+    "lan": "Östergötlands län",
+    "pop": 21623,
+    "lat": 58.8046930899,
+    "lng": 15.7760327938
+  },
+  {
+    "kod": "0563",
+    "namn": "Valdemarsvik",
+    "lan": "Östergötlands län",
+    "pop": 7525,
+    "lat": 58.1937965884,
+    "lng": 16.684912506
+  },
+  {
+    "kod": "0580",
+    "namn": "Linköping",
+    "lan": "Östergötlands län",
+    "pop": 168035,
+    "lat": 58.371571985,
+    "lng": 15.5992435285
+  },
+  {
+    "kod": "0581",
+    "namn": "Norrköping",
+    "lan": "Östergötlands län",
+    "pop": 144980,
+    "lat": 58.590670821,
+    "lng": 16.3810112118
+  },
+  {
+    "kod": "0582",
+    "namn": "Söderköping",
+    "lan": "Östergötlands län",
+    "pop": 14789,
+    "lat": 58.3938001472,
+    "lng": 16.5840269429
+  },
+  {
+    "kod": "0583",
+    "namn": "Motala",
+    "lan": "Östergötlands län",
+    "pop": 43505,
+    "lat": 58.6314366704,
+    "lng": 15.1702470873
+  },
+  {
+    "kod": "0584",
+    "namn": "Vadstena",
+    "lan": "Östergötlands län",
+    "pop": 7490,
+    "lat": 58.4189305223,
+    "lng": 14.8526822237
+  },
+  {
+    "kod": "0586",
+    "namn": "Mjölby",
+    "lan": "Östergötlands län",
+    "pop": 28695,
+    "lat": 58.322871244,
+    "lng": 15.1675765384
+  },
+  {
+    "kod": "0604",
+    "namn": "Aneby",
+    "lan": "Jönköpings län",
+    "pop": 6797,
+    "lat": 57.8656119162,
+    "lng": 14.7957829619
+  },
+  {
+    "kod": "0617",
+    "namn": "Gnosjö",
+    "lan": "Jönköpings län",
+    "pop": 9131,
+    "lat": 57.3563549383,
+    "lng": 13.8045176543
+  },
+  {
+    "kod": "0642",
+    "namn": "Mullsjö",
+    "lan": "Jönköpings län",
+    "pop": 7594,
+    "lat": 57.9531206393,
+    "lng": 13.8280973104
+  },
+  {
+    "kod": "0643",
+    "namn": "Habo",
+    "lan": "Jönköpings län",
+    "pop": 13456,
+    "lat": 57.9707344858,
+    "lng": 14.0624993418
+  },
+  {
+    "kod": "0662",
+    "namn": "Gislaved",
+    "lan": "Jönköpings län",
+    "pop": 28936,
+    "lat": 57.2542960708,
+    "lng": 13.5080396429
+  },
+  {
+    "kod": "0665",
+    "namn": "Vaggeryd",
+    "lan": "Jönköpings län",
+    "pop": 14825,
+    "lat": 57.4732642937,
+    "lng": 14.1225820045
+  },
+  {
+    "kod": "0680",
+    "namn": "Jönköping",
+    "lan": "Jönköpings län",
+    "pop": 147654,
+    "lat": 57.7745646799,
+    "lng": 14.1910005207
+  },
+  {
+    "kod": "0682",
+    "namn": "Nässjö",
+    "lan": "Jönköpings län",
+    "pop": 31587,
+    "lat": 57.616471431,
+    "lng": 14.6548337614
+  },
+  {
+    "kod": "0683",
+    "namn": "Värnamo",
+    "lan": "Jönköpings län",
+    "pop": 34542,
+    "lat": 57.1475823659,
+    "lng": 14.0962278558
+  },
+  {
+    "kod": "0684",
+    "namn": "Sävsjö",
+    "lan": "Jönköpings län",
+    "pop": 11563,
+    "lat": 57.3278180969,
+    "lng": 14.5812635368
+  },
+  {
+    "kod": "0685",
+    "namn": "Vetlanda",
+    "lan": "Jönköpings län",
+    "pop": 27528,
+    "lat": 57.3671400454,
+    "lng": 15.1599240627
+  },
+  {
+    "kod": "0686",
+    "namn": "Eksjö",
+    "lan": "Jönköpings län",
+    "pop": 17792,
+    "lat": 57.6190229138,
+    "lng": 15.2093337644
+  },
+  {
+    "kod": "0687",
+    "namn": "Tranås",
+    "lan": "Jönköpings län",
+    "pop": 18604,
+    "lat": 58.0270364869,
+    "lng": 14.8384625619
+  },
+  {
+    "kod": "0760",
+    "namn": "Uppvidinge",
+    "lan": "Kronobergs län",
+    "pop": 9061,
+    "lat": 57.0404765524,
+    "lng": 15.4248797737
+  },
+  {
+    "kod": "0761",
+    "namn": "Lessebo",
+    "lan": "Kronobergs län",
+    "pop": 8289,
+    "lat": 56.7750919789,
+    "lng": 15.3187418585
+  },
+  {
+    "kod": "0763",
+    "namn": "Tingsryd",
+    "lan": "Kronobergs län",
+    "pop": 11966,
+    "lat": 56.5357247202,
+    "lng": 14.9743909347
+  },
+  {
+    "kod": "0764",
+    "namn": "Alvesta",
+    "lan": "Kronobergs län",
+    "pop": 19830,
+    "lat": 56.8495243047,
+    "lng": 14.4956865335
+  },
+  {
+    "kod": "0765",
+    "namn": "Älmhult",
+    "lan": "Kronobergs län",
+    "pop": 17653,
+    "lat": 56.5735197657,
+    "lng": 14.1751862451
+  },
+  {
+    "kod": "0767",
+    "namn": "Markaryd",
+    "lan": "Kronobergs län",
+    "pop": 9938,
+    "lat": 56.5410277454,
+    "lng": 13.6131817683
+  },
+  {
+    "kod": "0780",
+    "namn": "Växjö",
+    "lan": "Kronobergs län",
+    "pop": 98334,
+    "lat": 56.9312313589,
+    "lng": 14.8736215296
+  },
+  {
+    "kod": "0781",
+    "namn": "Ljungby",
+    "lan": "Kronobergs län",
+    "pop": 28280,
+    "lat": 56.8143069279,
+    "lng": 13.8276884198
+  },
+  {
+    "kod": "0821",
+    "namn": "Högsby",
+    "lan": "Kalmar län",
+    "pop": 5321,
+    "lat": 57.1342106185,
+    "lng": 15.9346512364
+  },
+  {
+    "kod": "0834",
+    "namn": "Torsås",
+    "lan": "Kalmar län",
+    "pop": 6984,
+    "lat": 56.4196244311,
+    "lng": 15.9217732457
+  },
+  {
+    "kod": "0840",
+    "namn": "Mörbylånga",
+    "lan": "Kalmar län",
+    "pop": 16224,
+    "lat": 56.5043798297,
+    "lng": 16.5147354284
+  },
+  {
+    "kod": "0860",
+    "namn": "Hultsfred",
+    "lan": "Kalmar län",
+    "pop": 13673,
+    "lat": 57.3984650789,
+    "lng": 15.8016995182
+  },
+  {
+    "kod": "0861",
+    "namn": "Mönsterås",
+    "lan": "Kalmar län",
+    "pop": 13069,
+    "lat": 57.0558519147,
+    "lng": 16.4345760871
+  },
+  {
+    "kod": "0862",
+    "namn": "Emmaboda",
+    "lan": "Kalmar län",
+    "pop": 9006,
+    "lat": 56.6361148543,
+    "lng": 15.5544035127
+  },
+  {
+    "kod": "0880",
+    "namn": "Kalmar",
+    "lan": "Kalmar län",
+    "pop": 72704,
+    "lat": 56.6857750315,
+    "lng": 16.1703974659
+  },
+  {
+    "kod": "0881",
+    "namn": "Nybro",
+    "lan": "Kalmar län",
+    "pop": 19951,
+    "lat": 56.8362348973,
+    "lng": 15.8854030217
+  },
+  {
+    "kod": "0882",
+    "namn": "Oskarshamn",
+    "lan": "Kalmar län",
+    "pop": 26923,
+    "lat": 57.3864731061,
+    "lng": 16.4240298024
+  },
+  {
+    "kod": "0883",
+    "namn": "Västervik",
+    "lan": "Kalmar län",
+    "pop": 36447,
+    "lat": 57.8383700293,
+    "lng": 16.4489112012
+  },
+  {
+    "kod": "0884",
+    "namn": "Vimmerby",
+    "lan": "Kalmar län",
+    "pop": 15384,
+    "lat": 57.6913232136,
+    "lng": 15.872146129
+  },
+  {
+    "kod": "0885",
+    "namn": "Borgholm",
+    "lan": "Kalmar län",
+    "pop": 10666,
+    "lat": 56.9903394462,
+    "lng": 16.8463551966
+  },
+  {
+    "kod": "0980",
+    "namn": "Gotland",
+    "lan": "Gotlands län",
+    "pop": 60971,
+    "lat": 57.5091420206,
+    "lng": 18.5560796368
+  },
+  {
+    "kod": "1060",
+    "namn": "Olofström",
+    "lan": "Blekinge län",
+    "pop": 13000,
+    "lat": 56.3211248974,
+    "lng": 14.5632903104
+  },
+  {
+    "kod": "1080",
+    "namn": "Karlskrona",
+    "lan": "Blekinge län",
+    "pop": 66301,
+    "lat": 56.255986675,
+    "lng": 15.6812324702
+  },
+  {
+    "kod": "1081",
+    "namn": "Ronneby",
+    "lan": "Blekinge län",
+    "pop": 28741,
+    "lat": 56.2916115777,
+    "lng": 15.2404349319
+  },
+  {
+    "kod": "1082",
+    "namn": "Karlshamn",
+    "lan": "Blekinge län",
+    "pop": 31751,
+    "lat": 56.2477794254,
+    "lng": 14.8687483044
+  },
+  {
+    "kod": "1083",
+    "namn": "Sölvesborg",
+    "lan": "Blekinge län",
+    "pop": 17430,
+    "lat": 56.0691794738,
+    "lng": 14.6647509128
+  },
+  {
+    "kod": "1214",
+    "namn": "Svalöv",
+    "lan": "Skåne län",
+    "pop": 14543,
+    "lat": 55.9585910502,
+    "lng": 13.1253394089
+  },
+  {
+    "kod": "1230",
+    "namn": "Staffanstorp",
+    "lan": "Skåne län",
+    "pop": 27303,
+    "lat": 55.6458128238,
+    "lng": 13.2108721616
+  },
+  {
+    "kod": "1231",
+    "namn": "Burlöv",
+    "lan": "Skåne län",
+    "pop": 20101,
+    "lat": 55.6333294135,
+    "lng": 13.0948146597
+  },
+  {
+    "kod": "1233",
+    "namn": "Vellinge",
+    "lan": "Skåne län",
+    "pop": 37816,
+    "lat": 55.4439590681,
+    "lng": 12.9777976215
+  },
+  {
+    "kod": "1256",
+    "namn": "Östra Göinge",
+    "lan": "Skåne län",
+    "pop": 13978,
+    "lat": 56.2653495923,
+    "lng": 14.1443739053
+  },
+  {
+    "kod": "1257",
+    "namn": "Örkelljunga",
+    "lan": "Skåne län",
+    "pop": 10277,
+    "lat": 56.3170961175,
+    "lng": 13.3396714358
+  },
+  {
+    "kod": "1260",
+    "namn": "Bjuv",
+    "lan": "Skåne län",
+    "pop": 15985,
+    "lat": 56.053935129,
+    "lng": 12.9664108932
+  },
+  {
+    "kod": "1261",
+    "namn": "Kävlinge",
+    "lan": "Skåne län",
+    "pop": 32477,
+    "lat": 55.7875874249,
+    "lng": 13.0410153787
+  },
+  {
+    "kod": "1262",
+    "namn": "Lomma",
+    "lan": "Skåne län",
+    "pop": 24715,
+    "lat": 55.7049636816,
+    "lng": 13.0651638136
+  },
+  {
+    "kod": "1263",
+    "namn": "Svedala",
+    "lan": "Skåne län",
+    "pop": 23581,
+    "lat": 55.5340868204,
+    "lng": 13.2622748745
+  },
+  {
+    "kod": "1264",
+    "namn": "Skurup",
+    "lan": "Skåne län",
+    "pop": 17099,
+    "lat": 55.4689796818,
+    "lng": 13.5493845142
+  },
+  {
+    "kod": "1265",
+    "namn": "Sjöbo",
+    "lan": "Skåne län",
+    "pop": 19337,
+    "lat": 55.642772976,
+    "lng": 13.7441517684
+  },
+  {
+    "kod": "1266",
+    "namn": "Hörby",
+    "lan": "Skåne län",
+    "pop": 15562,
+    "lat": 55.8375098274,
+    "lng": 13.7306248084
+  },
+  {
+    "kod": "1267",
+    "namn": "Höör",
+    "lan": "Skåne län",
+    "pop": 17518,
+    "lat": 55.9495681172,
+    "lng": 13.5139334
+  },
+  {
+    "kod": "1270",
+    "namn": "Tomelilla",
+    "lan": "Skåne län",
+    "pop": 13639,
+    "lat": 55.6146489036,
+    "lng": 14.0128735586
+  },
+  {
+    "kod": "1272",
+    "namn": "Bromölla",
+    "lan": "Skåne län",
+    "pop": 12470,
+    "lat": 56.1243718978,
+    "lng": 14.4956921661
+  },
+  {
+    "kod": "1273",
+    "namn": "Osby",
+    "lan": "Skåne län",
+    "pop": 12947,
+    "lat": 56.4156838167,
+    "lng": 14.1475292438
+  },
+  {
+    "kod": "1275",
+    "namn": "Perstorp",
+    "lan": "Skåne län",
+    "pop": 7235,
+    "lat": 56.1871273382,
+    "lng": 13.3747041116
+  },
+  {
+    "kod": "1276",
+    "namn": "Klippan",
+    "lan": "Skåne län",
+    "pop": 17714,
+    "lat": 56.1118145057,
+    "lng": 13.2464469672
+  },
+  {
+    "kod": "1277",
+    "namn": "Åstorp",
+    "lan": "Skåne län",
+    "pop": 16449,
+    "lat": 56.1308875444,
+    "lng": 12.9917306431
+  },
+  {
+    "kod": "1278",
+    "namn": "Båstad",
+    "lan": "Skåne län",
+    "pop": 16026,
+    "lat": 56.4028732809,
+    "lng": 12.7667314573
+  },
+  {
+    "kod": "1280",
+    "namn": "Malmö",
+    "lan": "Skåne län",
+    "pop": 365644,
+    "lat": 55.5655324354,
+    "lng": 13.0108699153
+  },
+  {
+    "kod": "1281",
+    "namn": "Lund",
+    "lan": "Skåne län",
+    "pop": 131590,
+    "lat": 55.6677753797,
+    "lng": 13.3730248977
+  },
+  {
+    "kod": "1282",
+    "namn": "Landskrona",
+    "lan": "Skåne län",
+    "pop": 47309,
+    "lat": 55.8900343795,
+    "lng": 12.8700988143
+  },
+  {
+    "kod": "1283",
+    "namn": "Helsingborg",
+    "lan": "Skåne län",
+    "pop": 152091,
+    "lat": 56.0651931769,
+    "lng": 12.7842009571
+  },
+  {
+    "kod": "1284",
+    "namn": "Höganäs",
+    "lan": "Skåne län",
+    "pop": 28430,
+    "lat": 56.2242451466,
+    "lng": 12.6042601847
+  },
+  {
+    "kod": "1285",
+    "namn": "Eslöv",
+    "lan": "Skåne län",
+    "pop": 34922,
+    "lat": 55.8359600683,
+    "lng": 13.3675479106
+  },
+  {
+    "kod": "1286",
+    "namn": "Ystad",
+    "lan": "Skåne län",
+    "pop": 32106,
+    "lat": 55.4596208797,
+    "lng": 13.8966674796
+  },
+  {
+    "kod": "1287",
+    "namn": "Trelleborg",
+    "lan": "Skåne län",
+    "pop": 47269,
+    "lat": 55.4110084747,
+    "lng": 13.2725081286
+  },
+  {
+    "kod": "1290",
+    "namn": "Kristianstad",
+    "lan": "Skåne län",
+    "pop": 86379,
+    "lat": 56.0005591314,
+    "lng": 14.1524085216
+  },
+  {
+    "kod": "1291",
+    "namn": "Simrishamn",
+    "lan": "Skåne län",
+    "pop": 18890,
+    "lat": 55.5807523055,
+    "lng": 14.2078270032
+  },
+  {
+    "kod": "1292",
+    "namn": "Ängelholm",
+    "lan": "Skåne län",
+    "pop": 45110,
+    "lat": 56.265648993,
+    "lng": 12.9609878612
+  },
+  {
+    "kod": "1293",
+    "namn": "Hässleholm",
+    "lan": "Skåne län",
+    "pop": 52114,
+    "lat": 56.2027099498,
+    "lng": 13.7244849043
+  },
+  {
+    "kod": "1315",
+    "namn": "Hylte",
+    "lan": "Hallands län",
+    "pop": 10196,
+    "lat": 56.9743623813,
+    "lng": 13.2777000093
+  },
+  {
+    "kod": "1380",
+    "namn": "Halmstad",
+    "lan": "Hallands län",
+    "pop": 106084,
+    "lat": 56.7441000012,
+    "lng": 12.9674142957
+  },
+  {
+    "kod": "1381",
+    "namn": "Laholm",
+    "lan": "Hallands län",
+    "pop": 26595,
+    "lat": 56.5015790072,
+    "lng": 13.1801386343
+  },
+  {
+    "kod": "1382",
+    "namn": "Falkenberg",
+    "lan": "Hallands län",
+    "pop": 47337,
+    "lat": 57.0349186665,
+    "lng": 12.7172464755
+  },
+  {
+    "kod": "1383",
+    "namn": "Varberg",
+    "lan": "Hallands län",
+    "pop": 69070,
+    "lat": 57.1804025311,
+    "lng": 12.3812078222
+  },
+  {
+    "kod": "1384",
+    "namn": "Kungsbacka",
+    "lan": "Hallands län",
+    "pop": 85792,
+    "lat": 57.4363442962,
+    "lng": 12.0913701356
+  },
+  {
+    "kod": "1401",
+    "namn": "Härryda",
+    "lan": "Västra Götalands län",
+    "pop": 40003,
+    "lat": 57.6694582587,
+    "lng": 12.3196165949
+  },
+  {
+    "kod": "1402",
+    "namn": "Partille",
+    "lan": "Västra Götalands län",
+    "pop": 41060,
+    "lat": 57.7316748865,
+    "lng": 12.1281672298
+  },
+  {
+    "kod": "1407",
+    "namn": "Öckerö",
+    "lan": "Västra Götalands län",
+    "pop": 12771,
+    "lat": 57.7310320284,
+    "lng": 11.6396658337
+  },
+  {
+    "kod": "1415",
+    "namn": "Stenungsund",
+    "lan": "Västra Götalands län",
+    "pop": 27851,
+    "lat": 58.0548489237,
+    "lng": 11.9026793798
+  },
+  {
+    "kod": "1419",
+    "namn": "Tjörn",
+    "lan": "Västra Götalands län",
+    "pop": 16092,
+    "lat": 57.9999018522,
+    "lng": 11.5943314121
+  },
+  {
+    "kod": "1421",
+    "namn": "Orust",
+    "lan": "Västra Götalands län",
+    "pop": 15352,
+    "lat": 58.1611222518,
+    "lng": 11.5872287619
+  },
+  {
+    "kod": "1427",
+    "namn": "Sotenäs",
+    "lan": "Västra Götalands län",
+    "pop": 9104,
+    "lat": 58.4037142693,
+    "lng": 11.3016151905
+  },
+  {
+    "kod": "1430",
+    "namn": "Munkedal",
+    "lan": "Västra Götalands län",
+    "pop": 10354,
+    "lat": 58.5791055202,
+    "lng": 11.7087543346
+  },
+  {
+    "kod": "1435",
+    "namn": "Tanum",
+    "lan": "Västra Götalands län",
+    "pop": 12773,
+    "lat": 58.6969682201,
+    "lng": 11.387572443
+  },
+  {
+    "kod": "1438",
+    "namn": "Dals-Ed",
+    "lan": "Västra Götalands län",
+    "pop": 4606,
+    "lat": 58.9645266722,
+    "lng": 11.8857901232
+  },
+  {
+    "kod": "1439",
+    "namn": "Färgelanda",
+    "lan": "Västra Götalands län",
+    "pop": 6376,
+    "lat": 58.631072462,
+    "lng": 12.0152066659
+  },
+  {
+    "kod": "1440",
+    "namn": "Ale",
+    "lan": "Västra Götalands län",
+    "pop": 32576,
+    "lat": 57.9667026406,
+    "lng": 12.2301460951
+  },
+  {
+    "kod": "1441",
+    "namn": "Lerum",
+    "lan": "Västra Götalands län",
+    "pop": 43570,
+    "lat": 57.8247680536,
+    "lng": 12.3243857798
+  },
+  {
+    "kod": "1442",
+    "namn": "Vårgårda",
+    "lan": "Västra Götalands län",
+    "pop": 12474,
+    "lat": 57.988287556,
+    "lng": 12.7649550655
+  },
+  {
+    "kod": "1443",
+    "namn": "Bollebygd",
+    "lan": "Västra Götalands län",
+    "pop": 9802,
+    "lat": 57.7382307602,
+    "lng": 12.6189633031
+  },
+  {
+    "kod": "1444",
+    "namn": "Grästorp",
+    "lan": "Västra Götalands län",
+    "pop": 5555,
+    "lat": 58.3302373351,
+    "lng": 12.6598589252
+  },
+  {
+    "kod": "1445",
+    "namn": "Essunga",
+    "lan": "Västra Götalands län",
+    "pop": 5560,
+    "lat": 58.186482242,
+    "lng": 12.7486557807
+  },
+  {
+    "kod": "1446",
+    "namn": "Karlsborg",
+    "lan": "Västra Götalands län",
+    "pop": 7023,
+    "lat": 58.6067262231,
+    "lng": 14.4597680034
+  },
+  {
+    "kod": "1447",
+    "namn": "Gullspång",
+    "lan": "Västra Götalands län",
+    "pop": 5031,
+    "lat": 58.9330014381,
+    "lng": 14.1644130697
+  },
+  {
+    "kod": "1452",
+    "namn": "Tranemo",
+    "lan": "Västra Götalands län",
+    "pop": 11839,
+    "lat": 57.5130816627,
+    "lng": 13.4110416123
+  },
+  {
+    "kod": "1460",
+    "namn": "Bengtsfors",
+    "lan": "Västra Götalands län",
+    "pop": 9076,
+    "lat": 59.0345702194,
+    "lng": 12.2030163388
+  },
+  {
+    "kod": "1461",
+    "namn": "Mellerud",
+    "lan": "Västra Götalands län",
+    "pop": 9052,
+    "lat": 58.698148714,
+    "lng": 12.4232630473
+  },
+  {
+    "kod": "1462",
+    "namn": "Lilla Edet",
+    "lan": "Västra Götalands län",
+    "pop": 14442,
+    "lat": 58.1330339165,
+    "lng": 12.1423535763
+  },
+  {
+    "kod": "1463",
+    "namn": "Mark",
+    "lan": "Västra Götalands län",
+    "pop": 35155,
+    "lat": 57.4642053377,
+    "lng": 12.6067980336
+  },
+  {
+    "kod": "1465",
+    "namn": "Svenljunga",
+    "lan": "Västra Götalands län",
+    "pop": 10747,
+    "lat": 57.3903713604,
+    "lng": 13.0619913481
+  },
+  {
+    "kod": "1466",
+    "namn": "Herrljunga",
+    "lan": "Västra Götalands län",
+    "pop": 9497,
+    "lat": 58.0132318499,
+    "lng": 13.1107483484
+  },
+  {
+    "kod": "1470",
+    "namn": "Vara",
+    "lan": "Västra Götalands län",
+    "pop": 16088,
+    "lat": 58.2451296301,
+    "lng": 13.0604908194
+  },
+  {
+    "kod": "1471",
+    "namn": "Götene",
+    "lan": "Västra Götalands län",
+    "pop": 13286,
+    "lat": 58.5580663039,
+    "lng": 13.4758069866
+  },
+  {
+    "kod": "1472",
+    "namn": "Tibro",
+    "lan": "Västra Götalands län",
+    "pop": 11338,
+    "lat": 58.451250378,
+    "lng": 14.2221034367
+  },
+  {
+    "kod": "1473",
+    "namn": "Töreboda",
+    "lan": "Västra Götalands län",
+    "pop": 9043,
+    "lat": 58.6701993501,
+    "lng": 14.1674258645
+  },
+  {
+    "kod": "1480",
+    "namn": "Göteborg",
+    "lan": "Västra Götalands län",
+    "pop": 608993,
+    "lat": 57.6929317058,
+    "lng": 11.883442064
+  },
+  {
+    "kod": "1481",
+    "namn": "Mölndal",
+    "lan": "Västra Götalands län",
+    "pop": 71420,
+    "lat": 57.6092457103,
+    "lng": 12.0900049714
+  },
+  {
+    "kod": "1482",
+    "namn": "Kungälv",
+    "lan": "Västra Götalands län",
+    "pop": 50313,
+    "lat": 57.8904039298,
+    "lng": 11.8012734394
+  },
+  {
+    "kod": "1484",
+    "namn": "Lysekil",
+    "lan": "Västra Götalands län",
+    "pop": 13907,
+    "lat": 58.3276901219,
+    "lng": 11.4486673335
+  },
+  {
+    "kod": "1485",
+    "namn": "Uddevalla",
+    "lan": "Västra Götalands län",
+    "pop": 57010,
+    "lat": 58.3227746467,
+    "lng": 11.857829034
+  },
+  {
+    "kod": "1486",
+    "namn": "Strömstad",
+    "lan": "Västra Götalands län",
+    "pop": 13482,
+    "lat": 58.946541007,
+    "lng": 11.229937467
+  },
+  {
+    "kod": "1487",
+    "namn": "Vänersborg",
+    "lan": "Västra Götalands län",
+    "pop": 40041,
+    "lat": 58.4564619914,
+    "lng": 12.3580896832
+  },
+  {
+    "kod": "1488",
+    "namn": "Trollhättan",
+    "lan": "Västra Götalands län",
+    "pop": 59003,
+    "lat": 58.2177213231,
+    "lng": 12.3470594604
+  },
+  {
+    "kod": "1489",
+    "namn": "Alingsås",
+    "lan": "Västra Götalands län",
+    "pop": 42722,
+    "lat": 57.9867946987,
+    "lng": 12.5350880535
+  },
+  {
+    "kod": "1490",
+    "namn": "Borås",
+    "lan": "Västra Götalands län",
+    "pop": 114872,
+    "lat": 57.7323030508,
+    "lng": 12.9408443074
+  },
+  {
+    "kod": "1491",
+    "namn": "Ulricehamn",
+    "lan": "Västra Götalands län",
+    "pop": 24985,
+    "lat": 57.8113281514,
+    "lng": 13.4623736938
+  },
+  {
+    "kod": "1492",
+    "namn": "Åmål",
+    "lan": "Västra Götalands län",
+    "pop": 11906,
+    "lat": 58.9924081979,
+    "lng": 12.5871566833
+  },
+  {
+    "kod": "1493",
+    "namn": "Mariestad",
+    "lan": "Västra Götalands län",
+    "pop": 24583,
+    "lat": 58.7487278576,
+    "lng": 13.8055611645
+  },
+  {
+    "kod": "1494",
+    "namn": "Lidköping",
+    "lan": "Västra Götalands län",
+    "pop": 40425,
+    "lat": 58.5081495441,
+    "lng": 13.0379703739
+  },
+  {
+    "kod": "1495",
+    "namn": "Skara",
+    "lan": "Västra Götalands län",
+    "pop": 18707,
+    "lat": 58.3794580409,
+    "lng": 13.4780087068
+  },
+  {
+    "kod": "1496",
+    "namn": "Skövde",
+    "lan": "Västra Götalands län",
+    "pop": 57995,
+    "lat": 58.4285743689,
+    "lng": 13.9053758887
+  },
+  {
+    "kod": "1497",
+    "namn": "Hjo",
+    "lan": "Västra Götalands län",
+    "pop": 9350,
+    "lat": 58.2721342877,
+    "lng": 14.2291225529
+  },
+  {
+    "kod": "1498",
+    "namn": "Tidaholm",
+    "lan": "Västra Götalands län",
+    "pop": 12805,
+    "lat": 58.1470842735,
+    "lng": 13.9448184156
+  },
+  {
+    "kod": "1499",
+    "namn": "Falköping",
+    "lan": "Västra Götalands län",
+    "pop": 32806,
+    "lat": 58.1452545575,
+    "lng": 13.5502009981
+  },
+  {
+    "kod": "1715",
+    "namn": "Kil",
+    "lan": "Värmlands län",
+    "pop": 12061,
+    "lat": 59.5712875406,
+    "lng": 13.202074629
+  },
+  {
+    "kod": "1730",
+    "namn": "Eda",
+    "lan": "Värmlands län",
+    "pop": 8412,
+    "lat": 59.7966953804,
+    "lng": 12.1932617839
+  },
+  {
+    "kod": "1737",
+    "namn": "Torsby",
+    "lan": "Värmlands län",
+    "pop": 11321,
+    "lat": 60.5319462983,
+    "lng": 12.8729647581
+  },
+  {
+    "kod": "1760",
+    "namn": "Storfors",
+    "lan": "Värmlands län",
+    "pop": 3788,
+    "lat": 59.4892665284,
+    "lng": 14.2574561945
+  },
+  {
+    "kod": "1761",
+    "namn": "Hammarö",
+    "lan": "Värmlands län",
+    "pop": 16992,
+    "lat": 59.3106185746,
+    "lng": 13.5403329666
+  },
+  {
+    "kod": "1762",
+    "namn": "Munkfors",
+    "lan": "Värmlands län",
+    "pop": 3625,
+    "lat": 59.8215068135,
+    "lng": 13.4789147388
+  },
+  {
+    "kod": "1763",
+    "namn": "Forshaga",
+    "lan": "Värmlands län",
+    "pop": 11520,
+    "lat": 59.6513428089,
+    "lng": 13.5081707628
+  },
+  {
+    "kod": "1764",
+    "namn": "Grums",
+    "lan": "Värmlands län",
+    "pop": 9004,
+    "lat": 59.3910894911,
+    "lng": 13.0156239042
+  },
+  {
+    "kod": "1765",
+    "namn": "Årjäng",
+    "lan": "Värmlands län",
+    "pop": 9825,
+    "lat": 59.4245740449,
+    "lng": 12.0813342741
+  },
+  {
+    "kod": "1766",
+    "namn": "Sunne",
+    "lan": "Värmlands län",
+    "pop": 13356,
+    "lat": 59.8968914707,
+    "lng": 13.0599142421
+  },
+  {
+    "kod": "1780",
+    "namn": "Karlstad",
+    "lan": "Värmlands län",
+    "pop": 98084,
+    "lat": 59.4754196064,
+    "lng": 13.6209113185
+  },
+  {
+    "kod": "1781",
+    "namn": "Kristinehamn",
+    "lan": "Värmlands län",
+    "pop": 23756,
+    "lat": 59.2436063014,
+    "lng": 14.094194219
+  },
+  {
+    "kod": "1782",
+    "namn": "Filipstad",
+    "lan": "Värmlands län",
+    "pop": 9776,
+    "lat": 59.8524506933,
+    "lng": 14.153176552
+  },
+  {
+    "kod": "1783",
+    "namn": "Hagfors",
+    "lan": "Värmlands län",
+    "pop": 11418,
+    "lat": 60.0842741426,
+    "lng": 13.6307891476
+  },
+  {
+    "kod": "1784",
+    "namn": "Arvika",
+    "lan": "Värmlands län",
+    "pop": 25547,
+    "lat": 59.6861944552,
+    "lng": 12.6302303128
+  },
+  {
+    "kod": "1785",
+    "namn": "Säffle",
+    "lan": "Värmlands län",
+    "pop": 14899,
+    "lat": 59.152956724,
+    "lng": 12.8941571632
+  },
+  {
+    "kod": "1814",
+    "namn": "Lekeberg",
+    "lan": "Örebro län",
+    "pop": 8606,
+    "lat": 59.1794153904,
+    "lng": 14.791381144
+  },
+  {
+    "kod": "1860",
+    "namn": "Laxå",
+    "lan": "Örebro län",
+    "pop": 5423,
+    "lat": 58.9188643342,
+    "lng": 14.5475438666
+  },
+  {
+    "kod": "1861",
+    "namn": "Hallsberg",
+    "lan": "Örebro län",
+    "pop": 16120,
+    "lat": 59.0038180219,
+    "lng": 15.2453497994
+  },
+  {
+    "kod": "1862",
+    "namn": "Degerfors",
+    "lan": "Örebro län",
+    "pop": 9278,
+    "lat": 59.1626566876,
+    "lng": 14.424040374
+  },
+  {
+    "kod": "1863",
+    "namn": "Hällefors",
+    "lan": "Örebro län",
+    "pop": 6321,
+    "lat": 59.7777167276,
+    "lng": 14.6166870779
+  },
+  {
+    "kod": "1864",
+    "namn": "Ljusnarsberg",
+    "lan": "Örebro län",
+    "pop": 4369,
+    "lat": 59.937090569,
+    "lng": 14.9678534262
+  },
+  {
+    "kod": "1880",
+    "namn": "Örebro",
+    "lan": "Örebro län",
+    "pop": 160140,
+    "lat": 59.2637528805,
+    "lng": 15.3313079783
+  },
+  {
+    "kod": "1881",
+    "namn": "Kumla",
+    "lan": "Örebro län",
+    "pop": 22681,
+    "lat": 59.1242297392,
+    "lng": 15.1394352221
+  },
+  {
+    "kod": "1882",
+    "namn": "Askersund",
+    "lan": "Örebro län",
+    "pop": 11477,
+    "lat": 58.853166115,
+    "lng": 14.953249972
+  },
+  {
+    "kod": "1883",
+    "namn": "Karlskoga",
+    "lan": "Örebro län",
+    "pop": 30180,
+    "lat": 59.377488723,
+    "lng": 14.5661137554
+  },
+  {
+    "kod": "1884",
+    "namn": "Nora",
+    "lan": "Örebro län",
+    "pop": 10639,
+    "lat": 59.5348837184,
+    "lng": 14.8896763218
+  },
+  {
+    "kod": "1885",
+    "namn": "Lindesberg",
+    "lan": "Örebro län",
+    "pop": 23141,
+    "lat": 59.6488961207,
+    "lng": 15.3319803549
+  },
+  {
+    "kod": "1904",
+    "namn": "Skinnskatteberg",
+    "lan": "Västmanlands län",
+    "pop": 4256,
+    "lat": 59.7970853574,
+    "lng": 15.7211771891
+  },
+  {
+    "kod": "1907",
+    "namn": "Surahammar",
+    "lan": "Västmanlands län",
+    "pop": 9845,
+    "lat": 59.7672104626,
+    "lng": 16.1215853528
+  },
+  {
+    "kod": "1960",
+    "namn": "Kungsör",
+    "lan": "Västmanlands län",
+    "pop": 8694,
+    "lat": 59.4152749872,
+    "lng": 16.0867950031
+  },
+  {
+    "kod": "1961",
+    "namn": "Hallstahammar",
+    "lan": "Västmanlands län",
+    "pop": 16653,
+    "lat": 59.588409516,
+    "lng": 16.2203326548
+  },
+  {
+    "kod": "1962",
+    "namn": "Norberg",
+    "lan": "Västmanlands län",
+    "pop": 5452,
+    "lat": 60.0768065074,
+    "lng": 15.9689169851
+  },
+  {
+    "kod": "1980",
+    "namn": "Västerås",
+    "lan": "Västmanlands län",
+    "pop": 160634,
+    "lat": 59.6279569187,
+    "lng": 16.567376271
+  },
+  {
+    "kod": "1981",
+    "namn": "Sala",
+    "lan": "Västmanlands län",
+    "pop": 22843,
+    "lat": 59.9598637707,
+    "lng": 16.4891852102
+  },
+  {
+    "kod": "1982",
+    "namn": "Fagersta",
+    "lan": "Västmanlands län",
+    "pop": 13072,
+    "lat": 59.9473411343,
+    "lng": 15.8870799891
+  },
+  {
+    "kod": "1983",
+    "namn": "Köping",
+    "lan": "Västmanlands län",
+    "pop": 25729,
+    "lat": 59.5746132129,
+    "lng": 15.8878935235
+  },
+  {
+    "kod": "1984",
+    "namn": "Arboga",
+    "lan": "Västmanlands län",
+    "pop": 13980,
+    "lat": 59.3548357575,
+    "lng": 15.7855102537
+  },
+  {
+    "kod": "2021",
+    "namn": "Vansbro",
+    "lan": "Dalarnas län",
+    "pop": 6752,
+    "lat": 60.4449534858,
+    "lng": 14.258656872
+  },
+  {
+    "kod": "2023",
+    "namn": "Malung-Sälen",
+    "lan": "Dalarnas län",
+    "pop": 10254,
+    "lat": 60.8844035395,
+    "lng": 13.3685063122
+  },
+  {
+    "kod": "2026",
+    "namn": "Gagnef",
+    "lan": "Dalarnas län",
+    "pop": 10384,
+    "lat": 60.4766146214,
+    "lng": 14.8961293618
+  },
+  {
+    "kod": "2029",
+    "namn": "Leksand",
+    "lan": "Dalarnas län",
+    "pop": 16137,
+    "lat": 60.7167514075,
+    "lng": 14.9239109319
+  },
+  {
+    "kod": "2031",
+    "namn": "Rättvik",
+    "lan": "Dalarnas län",
+    "pop": 10998,
+    "lat": 61.1170743411,
+    "lng": 15.2967463072
+  },
+  {
+    "kod": "2034",
+    "namn": "Orsa",
+    "lan": "Dalarnas län",
+    "pop": 6851,
+    "lat": 61.3181397565,
+    "lng": 14.7162055934
+  },
+  {
+    "kod": "2039",
+    "namn": "Älvdalen",
+    "lan": "Dalarnas län",
+    "pop": 6882,
+    "lat": 61.6459801871,
+    "lng": 13.1380362578
+  },
+  {
+    "kod": "2061",
+    "namn": "Smedjebacken",
+    "lan": "Dalarnas län",
+    "pop": 10823,
+    "lat": 60.0880657383,
+    "lng": 15.4548920364
+  },
+  {
+    "kod": "2062",
+    "namn": "Mora",
+    "lan": "Dalarnas län",
+    "pop": 20540,
+    "lat": 61.0325460871,
+    "lng": 14.2602136279
+  },
+  {
+    "kod": "2080",
+    "namn": "Falun",
+    "lan": "Dalarnas län",
+    "pop": 59945,
+    "lat": 60.7513291975,
+    "lng": 15.8394035801
+  },
+  {
+    "kod": "2081",
+    "namn": "Borlänge",
+    "lan": "Dalarnas län",
+    "pop": 51425,
+    "lat": 60.4489024264,
+    "lng": 15.3606794337
+  },
+  {
+    "kod": "2082",
+    "namn": "Säter",
+    "lan": "Dalarnas län",
+    "pop": 11223,
+    "lat": 60.3745406044,
+    "lng": 15.697127929
+  },
+  {
+    "kod": "2083",
+    "namn": "Hedemora",
+    "lan": "Dalarnas län",
+    "pop": 15281,
+    "lat": 60.3546485341,
+    "lng": 16.0602026314
+  },
+  {
+    "kod": "2084",
+    "namn": "Avesta",
+    "lan": "Dalarnas län",
+    "pop": 22417,
+    "lat": 60.2136484034,
+    "lng": 16.36511051
+  },
+  {
+    "kod": "2085",
+    "namn": "Ludvika",
+    "lan": "Dalarnas län",
+    "pop": 26634,
+    "lat": 60.1820309146,
+    "lng": 14.7623720084
+  },
+  {
+    "kod": "2101",
+    "namn": "Ockelbo",
+    "lan": "Gävleborgs län",
+    "pop": 5715,
+    "lat": 60.9249348083,
+    "lng": 16.5737017478
+  },
+  {
+    "kod": "2104",
+    "namn": "Hofors",
+    "lan": "Gävleborgs län",
+    "pop": 9281,
+    "lat": 60.4912628601,
+    "lng": 16.4183450353
+  },
+  {
+    "kod": "2121",
+    "namn": "Ovanåker",
+    "lan": "Gävleborgs län",
+    "pop": 11341,
+    "lat": 61.3662767824,
+    "lng": 15.7699325589
+  },
+  {
+    "kod": "2132",
+    "namn": "Nordanstig",
+    "lan": "Gävleborgs län",
+    "pop": 9262,
+    "lat": 62.0512985466,
+    "lng": 17.0559721455
+  },
+  {
+    "kod": "2161",
+    "namn": "Ljusdal",
+    "lan": "Gävleborgs län",
+    "pop": 18445,
+    "lat": 61.8530981299,
+    "lng": 15.5377752845
+  },
+  {
+    "kod": "2180",
+    "namn": "Gävle",
+    "lan": "Gävleborgs län",
+    "pop": 103838,
+    "lat": 60.6810525426,
+    "lng": 17.1149908118
+  },
+  {
+    "kod": "2181",
+    "namn": "Sandviken",
+    "lan": "Gävleborgs län",
+    "pop": 38360,
+    "lat": 60.5407325262,
+    "lng": 16.6567284287
+  },
+  {
+    "kod": "2182",
+    "namn": "Söderhamn",
+    "lan": "Gävleborgs län",
+    "pop": 24545,
+    "lat": 61.2544000683,
+    "lng": 16.9650823717
+  },
+  {
+    "kod": "2183",
+    "namn": "Bollnäs",
+    "lan": "Gävleborgs län",
+    "pop": 26243,
+    "lat": 61.3124869507,
+    "lng": 16.3781107551
+  },
+  {
+    "kod": "2184",
+    "namn": "Hudiksvall",
+    "lan": "Gävleborgs län",
+    "pop": 37528,
+    "lat": 61.775347298,
+    "lng": 16.8221033622
+  },
+  {
+    "kod": "2260",
+    "namn": "Ånge",
+    "lan": "Västernorrlands län",
+    "pop": 9044,
+    "lat": 62.4727046672,
+    "lng": 15.721780587
+  },
+  {
+    "kod": "2262",
+    "namn": "Timrå",
+    "lan": "Västernorrlands län",
+    "pop": 17521,
+    "lat": 62.6130860682,
+    "lng": 17.3628472309
+  },
+  {
+    "kod": "2280",
+    "namn": "Härnösand",
+    "lan": "Västernorrlands län",
+    "pop": 24515,
+    "lat": 62.7130310749,
+    "lng": 17.7242917369
+  },
+  {
+    "kod": "2281",
+    "namn": "Sundsvall",
+    "lan": "Västernorrlands län",
+    "pop": 99048,
+    "lat": 62.4750385552,
+    "lng": 16.9510595414
+  },
+  {
+    "kod": "2282",
+    "namn": "Kramfors",
+    "lan": "Västernorrlands län",
+    "pop": 17491,
+    "lat": 62.9780406805,
+    "lng": 17.9760507994
+  },
+  {
+    "kod": "2283",
+    "namn": "Sollefteå",
+    "lan": "Västernorrlands län",
+    "pop": 18396,
+    "lat": 63.4402929582,
+    "lng": 16.8855404319
+  },
+  {
+    "kod": "2284",
+    "namn": "Örnsköldsvik",
+    "lan": "Västernorrlands län",
+    "pop": 55443,
+    "lat": 63.527221772,
+    "lng": 18.2661960474
+  },
+  {
+    "kod": "2303",
+    "namn": "Ragunda",
+    "lan": "Jämtlands län",
+    "pop": 5146,
+    "lat": 63.1875830026,
+    "lng": 16.0558048685
+  },
+  {
+    "kod": "2305",
+    "namn": "Bräcke",
+    "lan": "Jämtlands län",
+    "pop": 6035,
+    "lat": 62.8569930478,
+    "lng": 15.5959172984
+  },
+  {
+    "kod": "2309",
+    "namn": "Krokom",
+    "lan": "Jämtlands län",
+    "pop": 15680,
+    "lat": 63.7739425982,
+    "lng": 14.2078490764
+  },
+  {
+    "kod": "2313",
+    "namn": "Strömsund",
+    "lan": "Jämtlands län",
+    "pop": 11023,
+    "lat": 64.2218925997,
+    "lng": 15.2256305872
+  },
+  {
+    "kod": "2321",
+    "namn": "Åre",
+    "lan": "Jämtlands län",
+    "pop": 12693,
+    "lat": 63.4154322098,
+    "lng": 12.9837202474
+  },
+  {
+    "kod": "2326",
+    "namn": "Berg",
+    "lan": "Jämtlands län",
+    "pop": 7108,
+    "lat": 62.769001593,
+    "lng": 13.7826614924
+  },
+  {
+    "kod": "2361",
+    "namn": "Härjedalen",
+    "lan": "Jämtlands län",
+    "pop": 10175,
+    "lat": 62.2127510733,
+    "lng": 13.7032815331
+  },
+  {
+    "kod": "2380",
+    "namn": "Östersund",
+    "lan": "Jämtlands län",
+    "pop": 64979,
+    "lat": 63.2385758659,
+    "lng": 14.8673665705
+  },
+  {
+    "kod": "2401",
+    "namn": "Nordmaling",
+    "lan": "Västerbottens län",
+    "pop": 6942,
+    "lat": 63.6422031087,
+    "lng": 19.4127012745
+  },
+  {
+    "kod": "2403",
+    "namn": "Bjurholm",
+    "lan": "Västerbottens län",
+    "pop": 2359,
+    "lat": 63.9463943066,
+    "lng": 18.9914704893
+  },
+  {
+    "kod": "2404",
+    "namn": "Vindeln",
+    "lan": "Västerbottens län",
+    "pop": 5417,
+    "lat": 64.3562460001,
+    "lng": 19.5139727805
+  },
+  {
+    "kod": "2409",
+    "namn": "Robertsfors",
+    "lan": "Västerbottens län",
+    "pop": 6690,
+    "lat": 64.1852896091,
+    "lng": 20.7886428531
+  },
+  {
+    "kod": "2417",
+    "namn": "Norsjö",
+    "lan": "Västerbottens län",
+    "pop": 3968,
+    "lat": 64.9313894734,
+    "lng": 19.5512048838
+  },
+  {
+    "kod": "2418",
+    "namn": "Malå",
+    "lan": "Västerbottens län",
+    "pop": 2962,
+    "lat": 65.2369643008,
+    "lng": 18.7262858526
+  },
+  {
+    "kod": "2421",
+    "namn": "Storuman",
+    "lan": "Västerbottens län",
+    "pop": 5577,
+    "lat": 65.4375033964,
+    "lng": 16.0494535205
+  },
+  {
+    "kod": "2422",
+    "namn": "Sorsele",
+    "lan": "Västerbottens län",
+    "pop": 2357,
+    "lat": 65.7219648319,
+    "lng": 16.7355206067
+  },
+  {
+    "kod": "2425",
+    "namn": "Dorotea",
+    "lan": "Västerbottens län",
+    "pop": 2294,
+    "lat": 64.5209862089,
+    "lng": 15.9097088586
+  },
+  {
+    "kod": "2460",
+    "namn": "Vännäs",
+    "lan": "Västerbottens län",
+    "pop": 9132,
+    "lat": 63.9473905451,
+    "lng": 19.7149287875
+  },
+  {
+    "kod": "2462",
+    "namn": "Vilhelmina",
+    "lan": "Västerbottens län",
+    "pop": 6229,
+    "lat": 64.9360671212,
+    "lng": 16.0066121912
+  },
+  {
+    "kod": "2463",
+    "namn": "Åsele",
+    "lan": "Västerbottens län",
+    "pop": 2694,
+    "lat": 64.174553941,
+    "lng": 17.6271189058
+  },
+  {
+    "kod": "2480",
+    "namn": "Umeå",
+    "lan": "Västerbottens län",
+    "pop": 134249,
+    "lat": 63.8801580927,
+    "lng": 20.2647123195
+  },
+  {
+    "kod": "2481",
+    "namn": "Lycksele",
+    "lan": "Västerbottens län",
+    "pop": 12118,
+    "lat": 64.6537582255,
+    "lng": 18.4601585925
+  },
+  {
+    "kod": "2482",
+    "namn": "Skellefteå",
+    "lan": "Västerbottens län",
+    "pop": 78150,
+    "lat": 64.8063938143,
+    "lng": 20.5933642916
+  },
+  {
+    "kod": "2505",
+    "namn": "Arvidsjaur",
+    "lan": "Norrbottens län",
+    "pop": 6089,
+    "lat": 65.684054496,
+    "lng": 19.2587949278
+  },
+  {
+    "kod": "2506",
+    "namn": "Arjeplog",
+    "lan": "Norrbottens län",
+    "pop": 2599,
+    "lat": 66.3648475896,
+    "lng": 17.2393121595
+  },
+  {
+    "kod": "2510",
+    "namn": "Jokkmokk",
+    "lan": "Norrbottens län",
+    "pop": 4701,
+    "lat": 66.8977901809,
+    "lng": 18.6496240206
+  },
+  {
+    "kod": "2513",
+    "namn": "Överkalix",
+    "lan": "Norrbottens län",
+    "pop": 3201,
+    "lat": 66.4658964469,
+    "lng": 22.5842346046
+  },
+  {
+    "kod": "2514",
+    "namn": "Kalix",
+    "lan": "Norrbottens län",
+    "pop": 15391,
+    "lat": 65.9136046734,
+    "lng": 23.0027907089
+  },
+  {
+    "kod": "2518",
+    "namn": "Övertorneå",
+    "lan": "Norrbottens län",
+    "pop": 4057,
+    "lat": 66.5299155037,
+    "lng": 23.4988355717
+  },
+  {
+    "kod": "2521",
+    "namn": "Pajala",
+    "lan": "Norrbottens län",
+    "pop": 5857,
+    "lat": 67.315065993,
+    "lng": 22.8935566424
+  },
+  {
+    "kod": "2523",
+    "namn": "Gällivare",
+    "lan": "Norrbottens län",
+    "pop": 17233,
+    "lat": 67.2892568617,
+    "lng": 20.0782492566
+  },
+  {
+    "kod": "2560",
+    "namn": "Älvsbyn",
+    "lan": "Norrbottens län",
+    "pop": 7774,
+    "lat": 65.7434750324,
+    "lng": 20.6580342456
+  },
+  {
+    "kod": "2580",
+    "namn": "Luleå",
+    "lan": "Norrbottens län",
+    "pop": 79645,
+    "lat": 65.7034565119,
+    "lng": 22.2180525476
+  },
+  {
+    "kod": "2581",
+    "namn": "Piteå",
+    "lan": "Norrbottens län",
+    "pop": 42447,
+    "lat": 65.3763541371,
+    "lng": 21.0076923863
+  },
+  {
+    "kod": "2582",
+    "namn": "Boden",
+    "lan": "Norrbottens län",
+    "pop": 28049,
+    "lat": 66.0621308949,
+    "lng": 21.34158772
+  },
+  {
+    "kod": "2583",
+    "namn": "Haparanda",
+    "lan": "Norrbottens län",
+    "pop": 9151,
+    "lat": 65.8461724312,
+    "lng": 23.8182581102
+  },
+  {
+    "kod": "2584",
+    "namn": "Kiruna",
+    "lan": "Norrbottens län",
+    "pop": 22426,
+    "lat": 68.1626895946,
+    "lng": 20.711061668
+  }
+];
 
     /* ==========================================================
        LEAFLET SETUP MED CARTO & RETRO-LINJER
@@ -601,7 +2860,7 @@
 
     const GEOJSON_URLS = {
       lan: "https://raw.githubusercontent.com/okfse/sweden-geojson/master/swedish_regions.geojson",
-      kommun: "https://raw.githubusercontent.com/okfse/sweden-geojson/master/swedish_municipalities.geojson",
+      kommun: "./kommuner.geojson",
       landskap: "https://raw.githubusercontent.com/perliedman/svenska-landskap/master/svenska-landskap-klippt.geo.json"
     };
 
@@ -712,26 +2971,13 @@
     const NORTH_LAT = 59.55;
     const REGION_NAMES = ["Region Stockholm", "Region Uppsala", "Region Sörmland", "Region Östergötland", "Region Jönköpings län", "Region Kronoberg", "Region Kalmar län", "Region Gotland", "Region Blekinge", "Region Skåne", "Region Halland", "Västra Götalandsregionen", "Region Värmland", "Region Örebro län", "Region Västmanland", "Region Dalarna", "Region Gävleborg", "Region Västernorrland", "Region Jämtland Härjedalen", "Region Västerbotten", "Region Norrbotten"];
     const REGION_DATA = LAN_DATA.map((d,i) => ({...d, namn:REGION_NAMES[i], lan:d.namn}));
-    const EXTRA_OPTIONS = {
-      "Stockholms län": ["Täby","Nacka","Värmdö","Haninge","Huddinge","Botkyrka"],
-      "Uppsala län": ["Tierp","Älvkarleby","Östhammar","Knivsta","Heby","Håbo"],
-      "Östergötlands län": ["Norrköping","Motala","Mjölby","Vadstena","Finspång","Ydre"],
-      "Jönköpings län": ["Eksjö","Nässjö","Vetlanda","Värnamo","Gislaved","Habo"],
-      "Kronobergs län": ["Alvesta","Ljungby","Älmhult","Markaryd","Tingsryd","Lessebo"],
-      "Kalmar län": ["Nybro","Emmaboda","Torsås","Mörbylånga","Borgholm","Oskarshamn"],
-      "Blekinge län": ["Karlshamn","Ronneby","Sölvesborg","Olofström"],
-      "Skåne län": ["Trelleborg","Ystad","Eslöv","Landskrona","Hässleholm","Kristianstad"],
-      "Hallands län": ["Laholm","Hylte","Falkenberg","Varberg","Kungsbacka"],
-      "Västra Götalands län": ["Mölndal","Partille","Kungälv","Alingsås","Skövde","Uddevalla"],
-      "Värmlands län": ["Arvika","Säffle","Grums","Hagfors","Kil","Forshaga"],
-      "Örebro län": ["Kumla","Hallsberg","Laxå","Lekeberg","Karlskoga","Nora"],
-      "Västmanlands län": ["Köping","Arboga","Kungsör","Hallstahammar","Surahammar","Fagersta"],
-      "Jämtlands län": ["Krokom","Strömsund","Berg","Bräcke","Ragunda"],
-      "Västernorrlands län": ["Timrå","Ånge","Kramfors"],
-      "Gävleborgs län": ["Ovanåker","Nordanstig","Söderhamn","Ockelbo","Hofors"]
-    };
     function municipalNames(target) {
-      return [...new Set([...KOMMUNER_BASE.filter(d=>d.lan===target.lan).map(d=>d.namn), ...(EXTRA_OPTIONS[target.lan] || [])])];
+      return KOMMUNER_BASE.filter(d => d.lan === target.lan).map(d => d.namn);
+    }
+    function municipalOptions(target) {
+      const local = shuffle(municipalNames(target).filter(n => n !== target.namn)).slice(0, 5);
+      const extra = shuffle(KOMMUNER_BASE.filter(d => d.lan !== target.lan).map(d => d.namn)).slice(0, 5 - local.length);
+      return shuffle([target.namn, ...local, ...extra]);
     }
     function shuffle(arr) {
       const a=[...arr];
@@ -829,7 +3075,7 @@
         options = shuffle([correctText, ...distractors]);
 
       } else if (currentTab === "kommun") {
-        const pool = getFilteredPool(KOMMUNER_BASE).filter(d => municipalNames(d).length > 1);
+        const pool = getFilteredPool(KOMMUNER_BASE);
         currentTarget = pool[Math.floor(Math.random() * pool.length)];
         zoomLevel = 7.25;
         updateDotPosition(currentTarget.lat, currentTarget.lng, zoomLevel);
@@ -837,8 +3083,7 @@
         promptText = `Pricken pekar i ${currentTarget.lan}:<br><span class="target-highlight">VILKEN KOMMUN SÖKS?</span>`;
         correctText = currentTarget.namn;
 
-        const distractors = shuffle(municipalNames(currentTarget).filter(n => n !== correctText)).slice(0,5);
-        options = shuffle([correctText, ...distractors]);
+        options = municipalOptions(currentTarget);
 
       } else if (currentTab === "befolkning") {
         const pick = Math.random();
@@ -859,7 +3104,7 @@
         currentTarget = dataset[Math.floor(Math.random() * dataset.length)];
         updateDotPosition(currentTarget.lat, currentTarget.lng, zoomLevel);
 
-        promptText = `Ungefär hur många invånare har ${entityType}:<br><span class="target-highlight">${currentTarget.namn.toUpperCase()}?</span>`;
+        promptText = `Ungefär hur många invånare hade ${entityType} 2024:<br><span class="target-highlight">${currentTarget.namn.toUpperCase()}?</span>`;
         const step = currentTarget.pop < 10000 ? 100 : currentTarget.pop < 100000 ? 1000 : 10000;
         const rounded = Math.round(currentTarget.pop / step) * step;
         correctText = `${formatNumber(rounded)} inv.`;
@@ -904,14 +3149,14 @@
       let fact = "";
 
       if (currentTab === "befolkning") {
-        fact = `<strong>UNGEFÄRLIG FOLKMÄNGD:</strong> ${currentTarget.namn} har cirka <strong>${formatNumber(currentTarget.pop)} invånare</strong>.`;
+        fact = `<strong>FOLKMÄNGD 2024 (SCB):</strong> ${currentTarget.namn} hade <strong>${formatNumber(currentTarget.pop)} invånare</strong>.`;
         if (currentTarget.info) fact += ` [${currentTarget.info}]`;
       } else if (currentTab === "lan") {
-        fact = `<strong>${currentTarget.namn.toUpperCase()}:</strong> Folkmängd: <strong>${formatNumber(currentTarget.pop)} inv.</strong> (${currentTarget.info})`;
+        fact = `<strong>${currentTarget.namn.toUpperCase()}:</strong> Folkmängd 2024: <strong>${formatNumber(currentTarget.pop)} inv.</strong> (${currentTarget.info})`;
       } else if (currentTab === "landskap") {
-        fact = `<strong>${currentTarget.namn.toUpperCase()}:</strong> Landsdel: <strong>${currentTarget.del}</strong> med ca <strong>${formatNumber(currentTarget.pop)} inv.</strong>`;
+        fact = `<strong>${currentTarget.namn.toUpperCase()}:</strong> Landsdel: <strong>${currentTarget.del}</strong>`;
       } else {
-        fact = `<strong>${currentTarget.namn.toUpperCase()} KOMMUN:</strong> Tillhör <strong>${currentTarget.lan}</strong> med ca <strong>${formatNumber(currentTarget.pop)} invånare</strong>.`;
+        fact = `<strong>${currentTarget.namn.toUpperCase()} KOMMUN:</strong> Tillhör <strong>${currentTarget.lan}</strong> med <strong>${formatNumber(currentTarget.pop)} invånare</strong> år 2024.`;
       }
 
       document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);

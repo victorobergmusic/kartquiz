@@ -1,0 +1,17 @@
+Befolkning för kommuner och län: SCB, 31 december 2024.
+Tabell Folkmängden efter region, civilstånd, ålder, kön och år.
+https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/
+API: https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy
+Urval: alla kommuner och län, ålder totalt, båda könen och alla civilstånd,
+tabellinnehåll folkmängd BE0101N1, år 2024.
+
+Kommungeometri och referenspunkter: okfse/sweden-geojson.
+https://github.com/okfse/sweden-geojson
+https://raw.githubusercontent.com/okfse/sweden-geojson/master/swedish_municipalities.geojson
+Kommunnamn och länstillhörighet hämtas från SCB:s kommunkoder.
+Referenspunkterna har kontrollerats mot respektive kommunpolygon.
+Om källans mittpunkt hamnar utanför polygonen används en punkt inuti den.
+Punkterna avser inte nödvändigtvis kommunens centralort.
+
+Landskapsquizet använder originalets referenspunkter. Inga odaterade
+befolkningstal för landskap visas. Bakgrundskarta: CARTO / OpenStreetMap.
