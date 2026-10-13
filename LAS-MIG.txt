@@ -1,0 +1,60 @@
+SVERIGEATLAS ’74 – iPhone-version
+
+INSTALLERA
+1. Packa upp ZIP-filen på datorn.
+2. Lägg samtliga appfiler på en webbplats med HTTPS, i samma mapp.
+   index.html ska ligga direkt i webbplatsens publicerade mapp.
+   Du kan använda ett befintligt webbhotell eller GitHub Pages.
+3. Öppna webbplatsens adress i Safari på iPhone.
+4. Tryck på Dela (ibland via sidmenyn), sedan Lägg till på hemskärmen.
+5. Aktivera Öppna som webbapp om alternativet visas. Tryck Lägg till.
+6. Starta med ikonen SverigeAtlas på hemskärmen.
+
+GITHUB PAGES, STEG FÖR STEG
+- Skapa ett nytt publikt repository, exempelvis sverige-atlas.
+- Välj Add file > Upload files. Ladda upp innehållet i appmappen
+  (inte ZIP-filen) och välj Commit changes.
+- Gå till Settings > Pages.
+- Välj Deploy from a branch, main, / (root), Save.
+- Vänta tills GitHub visar webbplatsens adress och öppna den i Safari.
+  Webbplatsen och koden blir publikt tillgängliga med detta upplägg.
+
+Att enbart spara HTML-filen i appen Filer på iPhone ger inte denna
+installation. Appen behöver först en webbadress. Ingen App Store krävs.
+
+INTERNET OCH SPARANDE
+Kartor, gränser, Leaflet och webbtypsnitt hämtas från externa tjänster.
+Internet behövs för tillförlitligt spel. Det här är inte en fullständig
+offlineapp. Service worker sparar appens egna filer, inte en offlinekarta.
+Poäng, frågenummer, flik och norrfilter sparas lokalt på enheten.
+En ny fråga genereras vid omstart. Rensad webbplatsdata tar bort poängen.
+
+ÄNDRINGAR
+- Mobilanpassning med större knappar, säkerhetsmarginaler och sidrullning.
+- Mer utzoomat kartutsnitt; Centrera återställer frågans zoomnivå.
+- Kommunalternativ enbart från samma län. Normalt sex alternativ,
+  fem för Blekinge. Gotland utgår ur kommunquizet då det bara finns
+  en kommun; Gotland finns kvar bland befolkningsfrågorna.
+- Befolkning: ungefär lika många frågor om regioner som om kommuner.
+  Regionernas befolkning avser motsvarande län. Inga landskapsfrågor
+  i befolkningsquizet; separat landskapsflik finns kvar.
+- Samma avrundning för samtliga befolkningsalternativ.
+- Tydlig rätt/fel-text samt kartkällornas attribution.
+
+UNDERLAG OCH BEGRÄNSNINGAR
+Originalets kommunurval, referenspunkter och befolkningstal är kvar.
+Tillagda kommunnamn används endast som svarsalternativ. Appen innehåller
+inte alla 290 kommuner som möjliga frågor. Befolkningstalen saknar årtal
+och är inte uppdaterade eller verifierade som aktuell SCB-statistik.
+Norrfiltret använder originalets gräns latitud 59,55 för frågepunkten;
+kommunalternativ hämtas ändå från hela samma län.
+Originalets CARTO-konfiguration och externa gränskällor används.
+
+KONTROLL
+JavaScript-syntax och 1 000 genererade kommun-/befolkningspar har
+kontrollerats automatiskt (länstillhörighet, antal alternativ,
+norrfilter och frågetyper). Inte provkörd på en fysisk iPhone.
+
+KÄLLOR FÖR INSTALLATION
+https://support.apple.com/sv-se/guide/iphone/iphea86e5236/ios
+https://docs.github.com/en/pages/quickstart

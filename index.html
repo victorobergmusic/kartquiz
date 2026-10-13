@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>SverigeAtlas ’74</title>
+  <meta name="theme-color" content="#f3c969">
+  <meta name="apple-mobile-web-app-title" content="SverigeAtlas">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-180.png">
+
+  <!-- Leaflet GIS-kartmotor -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Retro Pixel- & Maskinskriftstypsnitt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* 70-talets jord- och pastellpalett */
+      --bg-cream: #f4ebd9;
+      --card-cream: #fff9ed;
+      --border-dark: #2d231e;
+      --mustard: #f3c969;
+      --terracotta: #e78b6a;
+      --sage: #8fa882;
+      --teal: #6b9e9f;
+      --brown-text: #2d231e;
+      --paper-shadow: 3px 3px 0px var(--border-dark);
+      --paper-shadow-sm: 2px 2px 0px var(--border-dark);
+      --paper-shadow-pressed: 1px 1px 0px var(--border-dark);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      background-color: var(--bg-cream);
+      color: var(--brown-text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* 70-tals regnbågsrand (Supergraphics) */
+    .retro-stripe {
+      display: flex;
+      height: 6px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .retro-stripe div { flex: 1; }
+    .stripe-1 { background-color: var(--terracotta); }
+    .stripe-2 { background-color: var(--mustard); }
+    .stripe-3 { background-color: var(--sage); }
+    .stripe-4 { background-color: var(--teal); }
+
+    /* Toppmeny */
+    header {
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--mustard);
+      border-bottom: 3px solid var(--border-dark);
+      flex-shrink: 0;
+    }
+
+    .brand {
+      font-family: 'VT323', monospace;
+      font-size: 1.55rem;
+      letter-spacing: 0.05em;
+      color: var(--border-dark);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .stats-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .retro-badge {
+      background: var(--card-cream);
+      border: 2px solid var(--border-dark);
+      box-shadow: var(--paper-shadow-sm);
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Norr om Stockholm - Switchpanel */
+    .filter-bar {
+      background: #edd8be;
+      border-bottom: 3px solid var(--border-dark);
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .switch-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    /* Retro Pixel Toggle */
+    .pixel-switch {
+      position: relative;
+      width: 44px;
+      height: 22px;
+      background: #cbb499;
+      border: 2px solid var(--border-dark);
+      box-shadow: inset 2px 2px 0px rgba(0,0,0,0.2);
+    }
+
+    .pixel-slider {
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 16px;
+      height: 16px;
+      background: var(--card-cream);
+      border: 2px solid var(--border-dark);
+      box-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+      transition: transform 0.15s steps(3);
+    }
+
+    .pixel-switch.active {
+      background: var(--sage);
+    }
+
+    .pixel-switch.active .pixel-slider {
+      transform: translateX(22px);
+      background: var(--mustard);
+    }
+
+    /* Fliknavigering */
+    nav {
+      display: flex;
+      background: var(--bg-cream);
+      border-bottom: 3px solid var(--border-dark);
+      flex-shrink: 0;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 8px 2px;
+      border: none;
+      background: transparent;
+      color: var(--brown-text);
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+      border-right: 2px solid var(--border-dark);
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .tab-btn:last-child {
+      border-right: none;
+    }
+
+    .tab-btn.active {
+      background-color: var(--card-cream);
+      border-bottom: 3px solid var(--terracotta);
+      color: var(--terracotta);
+    }
+
+    /* Huvudsektion */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Kartvy */
+    #map-wrapper {
+      flex: 1.1;
+      min-height: 240px;
+      position: relative;
+      border-bottom: 3px solid var(--border-dark);
+      background: #d8c6b2;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      background: #ded0bc;
+      /* 70-tals tryck- och atlasfilter */
+      filter: sepia(0.35) contrast(1.1) brightness(0.96);
+    }
+
+    /* Retro Pixel Knappar */
+    .recenter-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+      background: var(--card-cream);
+      border: 2px solid var(--border-dark);
+      box-shadow: var(--paper-shadow);
+      color: var(--brown-text);
+      padding: 5px 8px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .recenter-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: var(--paper-shadow-pressed);
+    }
+
+    /* Interaktionspanel */
+    #interaction-panel {
+      flex: 1.35;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 12px;
+      background: var(--bg-cream);
+      overflow-y: auto;
+    }
+
+    .question-prompt {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      background: var(--card-cream);
+      border: 2px solid var(--border-dark);
+      box-shadow: var(--paper-shadow-sm);
+      padding: 6px 8px;
+    }
+
+    .target-highlight {
+      font-family: 'VT323', monospace;
+      color: var(--terracotta);
+      font-size: 1.35rem;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* 6 svarsknappar med pixelart-känsla */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      flex: 1;
+    }
+
+    .opt-btn {
+      background: var(--card-cream);
+      color: var(--brown-text);
+      border: 2px solid var(--border-dark);
+      box-shadow: var(--paper-shadow);
+      padding: 8px 4px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      line-height: 1.15;
+      border-radius: 0;
+    }
+
+    .opt-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: var(--paper-shadow-pressed);
+    }
+
+    .opt-btn.correct {
+      background-color: var(--sage) !important;
+      color: #fff !important;
+      box-shadow: 2px 2px 0px #1a3821 !important;
+    }
+
+    .opt-btn.wrong {
+      background-color: var(--terracotta) !important;
+      color: #fff !important;
+      opacity: 0.85;
+    }
+
+    /* Statistik- och faktabox */
+    #stat-feedback {
+      margin-top: 8px;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      background: #edd8be;
+      border: 2px dashed var(--border-dark);
+      color: var(--brown-text);
+      display: none;
+      line-height: 1.35;
+    }
+
+    #stat-feedback strong {
+      color: #9c3f1c;
+    }
+
+    #next-btn {
+      margin-top: 8px;
+      padding: 10px;
+      background: var(--teal);
+      color: #fff;
+      border: 2px solid var(--border-dark);
+      box-shadow: var(--paper-shadow);
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: none;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    #next-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: var(--paper-shadow-pressed);
+    }
+
+    /* 8-bitars pixel-markör (Pricken) */
+    .pixel-marker {
+      width: 22px;
+      height: 22px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .marker-dot {
+      width: 10px;
+      height: 10px;
+      background: #e78b6a;
+      border: 2px solid var(--border-dark);
+      box-shadow: 0 0 0 2px var(--mustard);
+      z-index: 2;
+    }
+
+    .marker-box-pulse {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border: 2px dashed var(--terracotta);
+      animation: pixel-pulse 1.2s steps(2) infinite;
+    }
+
+    @keyframes pixel-pulse {
+      0% { transform: scale(0.8) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.6) rotate(45deg); opacity: 0.5; }
+      100% { transform: scale(0.8) rotate(0deg); opacity: 1; }
+    }
+
+    /* Mobile layout: the document can scroll on small screens / large text. */
+    body { height:auto; min-height:100vh; min-height:100dvh; overflow:auto; }
+    main { flex:none; overflow:visible; }
+    header { gap:8px; padding:10px 12px; }
+    .brand { font-size:1.45rem; }
+    .stats-group { gap:5px; }
+    .retro-badge { padding:4px 5px; font-size:.68rem; white-space:nowrap; }
+    .filter-bar { flex-wrap:wrap; gap:4px 10px; padding:2px 12px; }
+    .switch-wrap { min-height:44px; border:0; background:none; font:inherit; color:inherit; }
+    .tab-btn { min-height:48px; font-size:.7rem; }
+    .tab-btn.active { color:#8b351b; }
+    #map-wrapper { flex:none; height:34svh; min-height:190px; max-height:380px; }
+    #interaction-panel { flex:none; overflow:visible; padding:10px 12px 20px; }
+    .question-prompt { font-size:.78rem; margin-bottom:10px; }
+    .target-highlight { color:#943b22; font-size:1.3rem; }
+    .options-grid { flex:none; grid-auto-rows:minmax(48px,auto); gap:9px; }
+    .opt-btn { min-height:48px; font-size:.86rem; padding:10px 6px; overflow-wrap:anywhere; }
+    .opt-btn.correct,.opt-btn.wrong { color:#2d231e!important; }
+    .opt-btn:disabled { opacity:1; cursor:default; }
+    #next-btn { min-height:48px; color:#172f30; }
+    .recenter-btn { min-height:44px; top:8px; right:8px; }
+    .leaflet-control-attribution { font:9px/1.3 sans-serif!important; }
+    #map-status { position:absolute; bottom:22px; left:8px; right:8px; z-index:800; background:#fff9ed; padding:6px; font:12px/1.4 sans-serif; }
+    #map-status:empty { display:none; }
+    .data-note { font-size:.65rem; line-height:1.5; margin-top:12px; color:#665449; }
+    button { touch-action:manipulation; }
+    button:focus-visible { outline:3px solid #275f70; outline-offset:3px; }
+    @media(min-width:700px) { body { max-width:860px; margin:auto; } #map-wrapper { height:42svh; } }
+    @media(max-width:350px) { .brand { font-size:1.15rem; } .tab-btn { font-size:.62rem; } }
+    @media(prefers-reduced-motion:reduce) { .marker-box-pulse { animation:none; } }
+  </style>
+</head>
+<body>
+
+  <!-- 70-tals färgrand -->
+  <div class="retro-stripe">
+    <div class="stripe-1"></div>
+    <div class="stripe-2"></div>
+    <div class="stripe-3"></div>
+    <div class="stripe-4"></div>
+  </div>
+
+  <header>
+    <div class="brand">SverigeAtlas '74</div>
+    <div class="stats-group">
+      <div class="retro-badge">POÄNG: <span id="score-val">0</span></div>
+      <div class="retro-badge">NR: <span id="round-val">1</span></div>
+    </div>
+  </header>
+
+  <!-- Filter-bar med retro-brytare -->
+  <div class="filter-bar">
+    <span id="region-scope-label">OMRÅDE: HELA SVERIGE</span>
+    <button class="switch-wrap" id="north-toggle-wrap" type="button" role="switch" aria-checked="false">
+      <span>🌲 NORR OM STHLM</span>
+      <div class="pixel-switch" id="north-switch">
+        <div class="pixel-slider"></div>
+      </div>
+    </button>
+  </div>
+
+  <nav aria-label="Quiztyp">
+    <button class="tab-btn active" data-tab="lan">LÄN</button>
+    <button class="tab-btn" data-tab="kommun">KOMMUNER</button>
+    <button class="tab-btn" data-tab="landskap">LANDSKAP</button>
+    <button class="tab-btn" data-tab="befolkning">BEFOLKNING</button>
+  </nav>
+
+  <main>
+    <div id="map-wrapper">
+      <button class="recenter-btn" id="recenter-btn">🎯 CENTRERA</button>
+      <div id="map" aria-label="Karta med frågans plats"></div><div id="map-status" role="status"></div>
+    </div>
+
+    <div id="interaction-panel">
+      <div class="question-prompt" id="question-text">Laddar frågearkiv...</div>
+      <div class="options-grid" id="options-box"></div>
+      <div id="stat-feedback" role="status" aria-live="polite"></div>
+      <button id="next-btn">NÄSTA FRÅGA ➔</button>
+      <p class="data-note">Befolkning: ungefärliga tal från originalunderlaget, årtal saknas. Regionfrågor avser befolkningen inom motsvarande län. Kommunfrågor bygger på ett urval av kommuner. Kartan kräver internet.</p>
+    </div>
+  </main>
+
+  <script>
+    /* ==========================================================
+       CARTO BASEMAP & API-KONFIGURATION
+    ========================================================== */
+    const CARTO_KEY = "cb1_4j34_1_f2a5b946fcf0d78d13df467b";
+
+    // Korrekt CARTO-adress med ?key= och nolabels för att inte avslöja frågesvaren
+    const CARTO_VOYAGER_URL = `https://basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png?key=${CARTO_KEY}`;
+
+    /* ==========================================================
+       GEOGRAFISK & STATISTISK DATABAS (SCB)
+    ========================================================== */
+    const LAN_DATA = [
+      { namn: "Stockholms län", pop: 2455000, lat: 59.33, lng: 18.06, info: "Residensstad: Stockholm | 26 kommuner" },
+      { namn: "Uppsala län", pop: 404000, lat: 59.86, lng: 17.64, info: "Residensstad: Uppsala | 8 kommuner" },
+      { namn: "Södermanlands län", pop: 303000, lat: 58.75, lng: 17.00, info: "Residensstad: Nyköping | 9 kommuner" },
+      { namn: "Östergötlands län", pop: 472000, lat: 58.41, lng: 15.62, info: "Residensstad: Linköping | 13 kommuner" },
+      { namn: "Jönköpings län", pop: 369000, lat: 57.78, lng: 14.16, info: "Residensstad: Jönköping | 13 kommuner" },
+      { namn: "Kronobergs län", pop: 204000, lat: 56.88, lng: 14.81, info: "Residensstad: Växjö | 8 kommuner" },
+      { namn: "Kalmar län", pop: 247000, lat: 56.66, lng: 16.36, info: "Residensstad: Kalmar | Inkluderar Öland" },
+      { namn: "Gotlands län", pop: 61000, lat: 57.50, lng: 18.40, info: "Residensstad: Visby | Region Gotland" },
+      { namn: "Blekinge län", pop: 158000, lat: 56.16, lng: 15.59, info: "Residensstad: Karlskrona | 5 kommuner" },
+      { namn: "Skåne län", pop: 1420000, lat: 55.60, lng: 13.00, info: "Residensstad: Malmö | 33 kommuner" },
+      { namn: "Hallands län", pop: 344000, lat: 56.67, lng: 12.86, info: "Residensstad: Halmstad | 6 kommuner" },
+      { namn: "Västra Götalands län", pop: 1765000, lat: 57.71, lng: 11.97, info: "Residensstad: Göteborg | 49 kommuner" },
+      { namn: "Värmlands län", pop: 284000, lat: 59.80, lng: 13.20, info: "Residensstad: Karlstad | 16 kommuner" },
+      { namn: "Örebro län", pop: 308000, lat: 59.27, lng: 15.21, info: "Residensstad: Örebro | 12 kommuner" },
+      { namn: "Västmanlands län", pop: 280000, lat: 59.61, lng: 16.54, info: "Residensstad: Västerås | 10 kommuner" },
+      { namn: "Dalarnas län", pop: 288000, lat: 60.60, lng: 15.63, info: "Residensstad: Falun | 15 kommuner" },
+      { namn: "Gävleborgs län", pop: 287000, lat: 60.67, lng: 17.14, info: "Residensstad: Gävle | 10 kommuner" },
+      { namn: "Västernorrlands län", pop: 242000, lat: 62.63, lng: 17.94, info: "Residensstad: Härnösand | 7 kommuner" },
+      { namn: "Jämtlands län", pop: 133000, lat: 63.18, lng: 14.64, info: "Residensstad: Östersund | 8 kommuner" },
+      { namn: "Västerbottens län", pop: 278000, lat: 63.83, lng: 20.26, info: "Residensstad: Umeå | 15 kommuner" },
+      { namn: "Norrbottens län", pop: 249000, lat: 65.58, lng: 22.15, info: "Residensstad: Luleå | 14 kommuner" }
+    ];
+
+    const LANDSKAP_DATA = [
+      { namn: "Blekinge", pop: 158000, lat: 56.25, lng: 15.20, del: "Götaland" },
+      { namn: "Bohuslän", pop: 310000, lat: 58.30, lng: 11.60, del: "Götaland" },
+      { namn: "Dalarna", pop: 288000, lat: 61.00, lng: 14.50, del: "Svealand" },
+      { namn: "Dalsland", pop: 50000, lat: 58.80, lng: 12.20, del: "Götaland" },
+      { namn: "Gotland", pop: 61000, lat: 57.50, lng: 18.50, del: "Götaland" },
+      { namn: "Gästrikland", pop: 156000, lat: 60.60, lng: 16.80, del: "Norrland" },
+      { namn: "Halland", pop: 344000, lat: 56.90, lng: 12.70, del: "Götaland" },
+      { namn: "Hälsingland", pop: 131000, lat: 61.60, lng: 16.40, del: "Norrland" },
+      { namn: "Härjedalen", pop: 10000, lat: 62.30, lng: 13.50, del: "Norrland" },
+      { namn: "Jämtland", pop: 118000, lat: 63.30, lng: 14.30, del: "Norrland" },
+      { namn: "Lappland", pop: 91000, lat: 66.00, lng: 18.00, del: "Norrland" },
+      { namn: "Medelpad", pop: 126000, lat: 62.50, lng: 16.90, del: "Norrland" },
+      { namn: "Norrbotten", pop: 195000, lat: 66.00, lng: 22.50, del: "Norrland" },
+      { namn: "Närke", pop: 215000, lat: 59.15, lng: 15.10, del: "Svealand" },
+      { namn: "Skåne", pop: 1420000, lat: 55.90, lng: 13.50, del: "Götaland" },
+      { namn: "Småland", pop: 775000, lat: 57.20, lng: 14.80, del: "Götaland" },
+      { namn: "Södermanland", pop: 1390000, lat: 59.10, lng: 17.00, del: "Svealand" },
+      { namn: "Uppland", pop: 1720000, lat: 60.00, lng: 17.80, del: "Svealand" },
+      { namn: "Värmland", pop: 320000, lat: 59.80, lng: 13.10, del: "Svealand" },
+      { namn: "Västerbotten", pop: 230000, lat: 64.50, lng: 19.80, del: "Norrland" },
+      { namn: "Västergötland", pop: 1390000, lat: 58.10, lng: 13.00, del: "Götaland" },
+      { namn: "Västmanland", pop: 315000, lat: 59.75, lng: 16.20, del: "Svealand" },
+      { namn: "Ångermanland", pop: 130000, lat: 63.30, lng: 17.50, del: "Norrland" },
+      { namn: "Öland", pop: 26000, lat: 56.70, lng: 16.65, del: "Götaland" },
+      { namn: "Östergötland", pop: 472000, lat: 58.30, lng: 15.60, del: "Götaland" }
+    ];
+
+    const KOMMUNER_BASE = [
+      { namn: "Kiruna", lan: "Norrbottens län", pop: 22500, lat: 67.855, lng: 20.225 },
+      { namn: "Gällivare", lan: "Norrbottens län", pop: 17200, lat: 67.133, lng: 20.659 },
+      { namn: "Jokkmokk", lan: "Norrbottens län", pop: 4800, lat: 66.606, lng: 19.825 },
+      { namn: "Pajala", lan: "Norrbottens län", pop: 5900, lat: 67.213, lng: 23.366 },
+      { namn: "Övertorneå", lan: "Norrbottens län", pop: 4200, lat: 66.388, lng: 23.654 },
+      { namn: "Kalix", lan: "Norrbottens län", pop: 15600, lat: 65.854, lng: 23.141 },
+      { namn: "Haparanda", lan: "Norrbottens län", pop: 9200, lat: 65.835, lng: 24.135 },
+      { namn: "Boden", lan: "Norrbottens län", pop: 28000, lat: 65.825, lng: 21.688 },
+      { namn: "Luleå", lan: "Norrbottens län", pop: 79000, lat: 65.584, lng: 22.156 },
+      { namn: "Piteå", lan: "Norrbottens län", pop: 42400, lat: 65.317, lng: 21.479 },
+      { namn: "Arvidsjaur", lan: "Norrbottens län", pop: 6100, lat: 65.590, lng: 19.183 },
+      { namn: "Arjeplog", lan: "Norrbottens län", pop: 2650, lat: 66.051, lng: 17.892 },
+      { namn: "Sorsele", lan: "Västerbottens län", pop: 2400, lat: 65.534, lng: 17.525 },
+      { namn: "Storuman", lan: "Västerbottens län", pop: 5700, lat: 65.096, lng: 17.117 },
+      { namn: "Vilhelmina", lan: "Västerbottens län", pop: 6400, lat: 64.627, lng: 16.655 },
+      { namn: "Dorotea", lan: "Västerbottens län", pop: 2400, lat: 64.260, lng: 16.411 },
+      { namn: "Lycksele", lan: "Västerbottens län", pop: 12100, lat: 64.595, lng: 18.674 },
+      { namn: "Bjurholm", lan: "Västerbottens län", pop: 2370, lat: 63.931, lng: 19.215 },
+      { namn: "Umeå", lan: "Västerbottens län", pop: 133000, lat: 63.825, lng: 20.263 },
+      { namn: "Skellefteå", lan: "Västerbottens län", pop: 75000, lat: 64.750, lng: 20.952 },
+      { namn: "Örnsköldsvik", lan: "Västernorrlands län", pop: 55600, lat: 63.290, lng: 18.715 },
+      { namn: "Sollefteå", lan: "Västernorrlands län", pop: 18600, lat: 63.167, lng: 17.267 },
+      { namn: "Härnösand", lan: "Västernorrlands län", pop: 24600, lat: 62.632, lng: 17.937 },
+      { namn: "Sundsvall", lan: "Västernorrlands län", pop: 99000, lat: 62.390, lng: 17.306 },
+      { namn: "Åre", lan: "Jämtlands län", pop: 12200, lat: 63.399, lng: 13.081 },
+      { namn: "Östersund", lan: "Jämtlands län", pop: 64000, lat: 63.179, lng: 14.635 },
+      { namn: "Härjedalen", lan: "Jämtlands län", pop: 10100, lat: 62.030, lng: 14.360 },
+      { namn: "Ljusdal", lan: "Gävleborgs län", pop: 18700, lat: 61.829, lng: 16.096 },
+      { namn: "Hudiksvall", lan: "Gävleborgs län", pop: 37600, lat: 61.728, lng: 17.106 },
+      { namn: "Bollnäs", lan: "Gävleborgs län", pop: 26300, lat: 61.348, lng: 16.395 },
+      { namn: "Sandviken", lan: "Gävleborgs län", pop: 39100, lat: 60.621, lng: 16.775 },
+      { namn: "Gävle", lan: "Gävleborgs län", pop: 103000, lat: 60.674, lng: 17.141 },
+      { namn: "Mora", lan: "Dalarnas län", pop: 20500, lat: 61.004, lng: 14.537 },
+      { namn: "Leksand", lan: "Dalarnas län", pop: 16000, lat: 60.731, lng: 14.998 },
+      { namn: "Falun", lan: "Dalarnas län", pop: 60000, lat: 60.603, lng: 15.626 },
+      { namn: "Borlänge", lan: "Dalarnas län", pop: 52000, lat: 60.485, lng: 15.434 },
+      { namn: "Malung-Sälen", lan: "Dalarnas län", pop: 10200, lat: 60.683, lng: 13.714 },
+      { namn: "Avesta", lan: "Dalarnas län", pop: 22600, lat: 60.147, lng: 16.173 },
+      { namn: "Uppsala", lan: "Uppsala län", pop: 245000, lat: 59.858, lng: 17.638 },
+      { namn: "Enköping", lan: "Uppsala län", pop: 48000, lat: 59.635, lng: 17.078 },
+      { namn: "Norrtälje", lan: "Stockholms län", pop: 65000, lat: 59.758, lng: 18.705 },
+      { namn: "Sigtuna", lan: "Stockholms län", pop: 51000, lat: 59.617, lng: 17.723 },
+      { namn: "Västerås", lan: "Västmanlands län", pop: 159000, lat: 59.610, lng: 16.544 },
+      { namn: "Sala", lan: "Västmanlands län", pop: 23000, lat: 59.920, lng: 16.605 },
+      { namn: "Sunne", lan: "Värmlands län", pop: 13300, lat: 59.837, lng: 13.143 },
+      { namn: "Torsby", lan: "Värmlands län", pop: 11500, lat: 60.136, lng: 13.008 },
+      { namn: "Stockholm", lan: "Stockholms län", pop: 988000, lat: 59.329, lng: 18.068 },
+      { namn: "Göteborg", lan: "Västra Götalands län", pop: 604000, lat: 57.708, lng: 11.974 },
+      { namn: "Malmö", lan: "Skåne län", pop: 362000, lat: 55.605, lng: 13.003 },
+      { namn: "Linköping", lan: "Östergötlands län", pop: 167000, lat: 58.410, lng: 15.621 },
+      { namn: "Örebro", lan: "Örebro län", pop: 159000, lat: 59.275, lng: 15.213 },
+      { namn: "Helsingborg", lan: "Skåne län", pop: 151000, lat: 56.046, lng: 12.694 },
+      { namn: "Jönköping", lan: "Jönköpings län", pop: 146000, lat: 57.782, lng: 14.161 },
+      { namn: "Lund", lan: "Skåne län", pop: 130000, lat: 55.704, lng: 13.191 },
+      { namn: "Borås", lan: "Västra Götalands län", pop: 114000, lat: 57.721, lng: 12.940 },
+      { namn: "Halmstad", lan: "Hallands län", pop: 105000, lat: 56.674, lng: 12.857 },
+      { namn: "Växjö", lan: "Kronobergs län", pop: 97000, lat: 56.877, lng: 14.809 },
+      { namn: "Karlstad", lan: "Värmlands län", pop: 96000, lat: 59.379, lng: 13.503 },
+      { namn: "Kalmar", lan: "Kalmar län", pop: 72000, lat: 56.663, lng: 16.361 },
+      { namn: "Karlskrona", lan: "Blekinge län", pop: 67000, lat: 56.161, lng: 15.586 },
+      { namn: "Gotland (Visby)", lan: "Gotlands län", pop: 61000, lat: 57.634, lng: 18.294 }
+    ];
+
+    /* ==========================================================
+       LEAFLET SETUP MED CARTO & RETRO-LINJER
+    ========================================================== */
+    let map = null;
+    let dotMarker = null;
+    let boundaryLayers = { lan: null, kommun: null, landskap: null };
+    let currentActiveLayer = null;
+    let boundaryRequest = 0;
+    let currentZoom = 5.75;
+
+    const GEOJSON_URLS = {
+      lan: "https://raw.githubusercontent.com/okfse/sweden-geojson/master/swedish_regions.geojson",
+      kommun: "https://raw.githubusercontent.com/okfse/sweden-geojson/master/swedish_municipalities.geojson",
+      landskap: "https://raw.githubusercontent.com/perliedman/svenska-landskap/master/svenska-landskap-klippt.geo.json"
+    };
+
+    function initMap() {
+      map = L.map("map", {
+        zoomControl: false,
+        attributionControl: true,
+        zoomSnap: 0.25,
+        minZoom: 4,
+        maxZoom: 14
+      }).setView([62.5, 16.0], 5);
+
+      // Lägg till CARTO Voyager No-Labels med din API-nyckel
+      L.tileLayer(CARTO_VOYAGER_URL, {
+        maxZoom: 14,
+        minZoom: 4,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      }).on('tileerror', () => { document.getElementById('map-status').textContent = 'Kartbilder kunde inte hämtas. Kontrollera internet och ladda om.'; }).addTo(map);
+
+      // Ladda neutrala administrativa gränser i retrobrunt
+      loadBoundariesFor("lan");
+
+      setTimeout(() => {
+        if (map) map.invalidateSize();
+      }, 150);
+    }
+
+    async function loadBoundariesFor(type) {
+      const request = ++boundaryRequest;
+      if (!map) return;
+      if (currentActiveLayer && map) {
+        map.removeLayer(currentActiveLayer);
+      }
+
+      if (boundaryLayers[type]) {
+        currentActiveLayer = boundaryLayers[type];
+        map.addLayer(currentActiveLayer);
+        return;
+      }
+
+      try {
+        const res = await fetch(GEOJSON_URLS[type]);
+        if (!res.ok) throw new Error("Offline");
+        const data = await res.json();
+
+        const layer = L.geoJSON(data, {
+          interactive: false,
+          style: {
+            color: (type === "kommun") ? "#705844" : "#4a3b2c",
+            weight: (type === "kommun") ? 1.0 : 1.6,
+            opacity: 0.65,
+            fill: false
+          }
+        });
+
+        boundaryLayers[type] = layer;
+        if (request !== boundaryRequest) return;
+        currentActiveLayer = layer;
+        if (map) map.addLayer(layer);
+      } catch (err) {
+        // Fallback vid lokal offline-körning utan externa nätverksresurser
+        if (request === boundaryRequest) document.getElementById('map-status').textContent = 'Gränser kunde inte laddas. Pricken visar fortfarande frågans plats.';
+      }
+    }
+
+    function updateDotPosition(lat, lng, zoom) {
+      currentZoom = zoom;
+      if (!map) return;
+
+      if (!dotMarker) {
+        const dotHtml = `
+          <div class="pixel-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-box-pulse"></div>
+          </div>
+        `;
+        const icon = L.divIcon({
+          html: dotHtml,
+          className: "",
+          iconSize: [22, 22],
+          iconAnchor: [11, 11]
+        });
+        dotMarker = L.marker([lat, lng], { icon: icon, interactive: false }).addTo(map);
+      } else {
+        dotMarker.setLatLng([lat, lng]);
+      }
+
+      map.flyTo([lat, lng], zoom, { animate: !matchMedia("(prefers-reduced-motion: reduce)").matches, duration: 0.7 });
+    }
+
+    function centerOnDot() {
+      if (currentTarget && map) {
+        const z = currentZoom;
+        map.flyTo([currentTarget.lat, currentTarget.lng], z, { animate: !matchMedia("(prefers-reduced-motion: reduce)").matches, duration: 0.4 });
+      }
+    }
+
+    /* ==========================================================
+       QUIZMOTOR & NORR OM STOCKHOLM-FILTER
+    ========================================================== */
+    let isNorthOnly = false;
+    let currentTab = "lan";
+    let currentTarget = null;
+    let score = 0;
+    let round = 1;
+    let locked = false;
+
+    const NORTH_LAT = 59.55;
+    const REGION_NAMES = ["Region Stockholm", "Region Uppsala", "Region Sörmland", "Region Östergötland", "Region Jönköpings län", "Region Kronoberg", "Region Kalmar län", "Region Gotland", "Region Blekinge", "Region Skåne", "Region Halland", "Västra Götalandsregionen", "Region Värmland", "Region Örebro län", "Region Västmanland", "Region Dalarna", "Region Gävleborg", "Region Västernorrland", "Region Jämtland Härjedalen", "Region Västerbotten", "Region Norrbotten"];
+    const REGION_DATA = LAN_DATA.map((d,i) => ({...d, namn:REGION_NAMES[i], lan:d.namn}));
+    const EXTRA_OPTIONS = {
+      "Stockholms län": ["Täby","Nacka","Värmdö","Haninge","Huddinge","Botkyrka"],
+      "Uppsala län": ["Tierp","Älvkarleby","Östhammar","Knivsta","Heby","Håbo"],
+      "Östergötlands län": ["Norrköping","Motala","Mjölby","Vadstena","Finspång","Ydre"],
+      "Jönköpings län": ["Eksjö","Nässjö","Vetlanda","Värnamo","Gislaved","Habo"],
+      "Kronobergs län": ["Alvesta","Ljungby","Älmhult","Markaryd","Tingsryd","Lessebo"],
+      "Kalmar län": ["Nybro","Emmaboda","Torsås","Mörbylånga","Borgholm","Oskarshamn"],
+      "Blekinge län": ["Karlshamn","Ronneby","Sölvesborg","Olofström"],
+      "Skåne län": ["Trelleborg","Ystad","Eslöv","Landskrona","Hässleholm","Kristianstad"],
+      "Hallands län": ["Laholm","Hylte","Falkenberg","Varberg","Kungsbacka"],
+      "Västra Götalands län": ["Mölndal","Partille","Kungälv","Alingsås","Skövde","Uddevalla"],
+      "Värmlands län": ["Arvika","Säffle","Grums","Hagfors","Kil","Forshaga"],
+      "Örebro län": ["Kumla","Hallsberg","Laxå","Lekeberg","Karlskoga","Nora"],
+      "Västmanlands län": ["Köping","Arboga","Kungsör","Hallstahammar","Surahammar","Fagersta"],
+      "Jämtlands län": ["Krokom","Strömsund","Berg","Bräcke","Ragunda"],
+      "Västernorrlands län": ["Timrå","Ånge","Kramfors"],
+      "Gävleborgs län": ["Ovanåker","Nordanstig","Söderhamn","Ockelbo","Hofors"]
+    };
+    function municipalNames(target) {
+      return [...new Set([...KOMMUNER_BASE.filter(d=>d.lan===target.lan).map(d=>d.namn), ...(EXTRA_OPTIONS[target.lan] || [])])];
+    }
+    function shuffle(arr) {
+      const a=[...arr];
+      for(let i=a.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+      return a;
+    }
+    function saveProgress() {
+      try { localStorage.setItem('atlas74', JSON.stringify({score,round,isNorthOnly,currentTab})); } catch {}
+    }
+
+    function toggleNorthOnly() {
+      isNorthOnly = !isNorthOnly;
+      document.getElementById('north-toggle-wrap').setAttribute('aria-checked', String(isNorthOnly));
+      const sw = document.getElementById("north-switch");
+      const label = document.getElementById("region-scope-label");
+
+      if (isNorthOnly) {
+        sw.classList.add("active");
+        label.innerText = "OMRÅDE: NORR OM STHLM";
+      } else {
+        sw.classList.remove("active");
+        label.innerText = "OMRÅDE: HELA SVERIGE";
+      }
+      setupQuestion();
+    }
+
+    function getFilteredPool(dataset) {
+      if (!isNorthOnly) return dataset;
+      const res = dataset.filter(i => i.lat >= NORTH_LAT);
+      return res;
+    }
+
+    function formatNumber(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    function getRandomDistractors(arr, count, excludeItem) {
+      const filtered = arr.filter(i => i.namn !== excludeItem.namn);
+      const shuffled = shuffle(filtered);
+      return shuffled.slice(0, count);
+    }
+
+    function switchTab(tab, clickedBtn) {
+      currentTab = tab;
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      clickedBtn.classList.add("active");
+
+      if (tab === "lan" || tab === "befolkning") {
+        loadBoundariesFor("lan");
+      } else if (tab === "kommun") {
+        loadBoundariesFor("kommun");
+      } else if (tab === "landskap") {
+        loadBoundariesFor("landskap");
+      }
+
+      if (map) {
+        setTimeout(() => map.invalidateSize(), 50);
+      }
+      setupQuestion();
+    }
+
+    function setupQuestion() {
+      locked = false;
+      saveProgress();
+      document.getElementById("stat-feedback").style.display = "none";
+      document.getElementById("next-btn").style.display = "none";
+
+      let promptText = "";
+      let correctText = "";
+      let options = [];
+      let zoomLevel = 6.8;
+
+      if (currentTab === "lan") {
+        const pool = getFilteredPool(LAN_DATA);
+        currentTarget = pool[Math.floor(Math.random() * pool.length)];
+        zoomLevel = 5.75;
+        updateDotPosition(currentTarget.lat, currentTarget.lng, zoomLevel);
+
+        promptText = `Pricken lokaliserar ett län:<br><span class="target-highlight">VILKET LÄN PEKAR PRICKEN PÅ?</span>`;
+        correctText = currentTarget.namn;
+
+        const distractors = getRandomDistractors(pool, 5, currentTarget).map(d => d.namn);
+        options = shuffle([correctText, ...distractors]);
+
+      } else if (currentTab === "landskap") {
+        const pool = getFilteredPool(LANDSKAP_DATA);
+        currentTarget = pool[Math.floor(Math.random() * pool.length)];
+        zoomLevel = 5.75;
+        updateDotPosition(currentTarget.lat, currentTarget.lng, zoomLevel);
+
+        promptText = `Pricken markerar en historisk del:<br><span class="target-highlight">VILKET LANDSKAP ÄR DETTA?</span>`;
+        correctText = currentTarget.namn;
+
+        const distractors = getRandomDistractors(pool, 5, currentTarget).map(d => d.namn);
+        options = shuffle([correctText, ...distractors]);
+
+      } else if (currentTab === "kommun") {
+        const pool = getFilteredPool(KOMMUNER_BASE).filter(d => municipalNames(d).length > 1);
+        currentTarget = pool[Math.floor(Math.random() * pool.length)];
+        zoomLevel = 7.25;
+        updateDotPosition(currentTarget.lat, currentTarget.lng, zoomLevel);
+
+        promptText = `Pricken pekar i ${currentTarget.lan}:<br><span class="target-highlight">VILKEN KOMMUN SÖKS?</span>`;
+        correctText = currentTarget.namn;
+
+        const distractors = shuffle(municipalNames(currentTarget).filter(n => n !== correctText)).slice(0,5);
+        options = shuffle([correctText, ...distractors]);
+
+      } else if (currentTab === "befolkning") {
+        const pick = Math.random();
+        let entityType = "";
+        let dataset = [];
+
+        if (pick < 0.5) {
+          entityType = "regionen";
+          dataset = getFilteredPool(REGION_DATA);
+          zoomLevel = 5.75;
+        } else {
+          entityType = "kommunen";
+          dataset = getFilteredPool(KOMMUNER_BASE);
+          zoomLevel = 7.25;
+        }
+
+        loadBoundariesFor(entityType === 'kommunen' ? 'kommun' : 'lan');
+        currentTarget = dataset[Math.floor(Math.random() * dataset.length)];
+        updateDotPosition(currentTarget.lat, currentTarget.lng, zoomLevel);
+
+        promptText = `Ungefär hur många invånare har ${entityType}:<br><span class="target-highlight">${currentTarget.namn.toUpperCase()}?</span>`;
+        const step = currentTarget.pop < 10000 ? 100 : currentTarget.pop < 100000 ? 1000 : 10000;
+        const rounded = Math.round(currentTarget.pop / step) * step;
+        correctText = `${formatNumber(rounded)} inv.`;
+        const popSet = new Set([rounded]);
+        for (const m of shuffle([0.6,0.75,0.85,1.15,1.25,1.4,1.6])) {
+          if(popSet.size === 6) break;
+          popSet.add(Math.max(step, Math.round(rounded * m / step) * step));
+        }
+        options = shuffle([...popSet]).map(p => `${formatNumber(p)} inv.`);
+      }
+
+      document.getElementById("question-text").innerHTML = promptText;
+
+      const container = document.getElementById("options-box");
+      container.innerHTML = "";
+      options.forEach(optText => {
+        const btn = document.createElement("button");
+        btn.className = "opt-btn";
+        btn.innerText = optText;
+        btn.onclick = () => submitAnswer(btn, optText, correctText);
+        container.appendChild(btn);
+      });
+    }
+
+    function submitAnswer(btn, chosen, correct) {
+      if (locked) return;
+      locked = true;
+
+      const isRight = (chosen === correct);
+      if (isRight) {
+        btn.classList.add("correct");
+        score += 10;
+        document.getElementById("score-val").innerText = score;
+      } else {
+        btn.classList.add("wrong");
+        document.querySelectorAll(".opt-btn").forEach(b => {
+          if (b.innerText === correct) b.classList.add("correct");
+        });
+      }
+
+      const feedback = document.getElementById("stat-feedback");
+      let fact = "";
+
+      if (currentTab === "befolkning") {
+        fact = `<strong>UNGEFÄRLIG FOLKMÄNGD:</strong> ${currentTarget.namn} har cirka <strong>${formatNumber(currentTarget.pop)} invånare</strong>.`;
+        if (currentTarget.info) fact += ` [${currentTarget.info}]`;
+      } else if (currentTab === "lan") {
+        fact = `<strong>${currentTarget.namn.toUpperCase()}:</strong> Folkmängd: <strong>${formatNumber(currentTarget.pop)} inv.</strong> (${currentTarget.info})`;
+      } else if (currentTab === "landskap") {
+        fact = `<strong>${currentTarget.namn.toUpperCase()}:</strong> Landsdel: <strong>${currentTarget.del}</strong> med ca <strong>${formatNumber(currentTarget.pop)} inv.</strong>`;
+      } else {
+        fact = `<strong>${currentTarget.namn.toUpperCase()} KOMMUN:</strong> Tillhör <strong>${currentTarget.lan}</strong> med ca <strong>${formatNumber(currentTarget.pop)} invånare</strong>.`;
+      }
+
+      document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      saveProgress();
+      feedback.innerHTML = (isRight ? '<strong>Rätt!</strong> ' : '<strong>Rätt svar: ' + correct + '.</strong> ') + fact;
+      feedback.style.display = "block";
+      document.getElementById("next-btn").style.display = "block";
+    }
+
+    function nextQuestion() {
+      round++;
+      document.getElementById("round-val").innerText = round;
+      setupQuestion();
+    }
+
+    // Registrera klickhändelser stabilt utan 'event'-beroenden
+    window.addEventListener("DOMContentLoaded", () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('atlas74') || 'null');
+        if(saved) {
+          score = Number.isFinite(saved.score) ? saved.score : 0;
+          round = Number.isFinite(saved.round) ? saved.round : 1;
+          isNorthOnly = !!saved.isNorthOnly;
+          if(['lan','kommun','landskap','befolkning'].includes(saved.currentTab)) currentTab = saved.currentTab;
+        }
+      } catch {}
+      document.getElementById('score-val').textContent = score;
+      document.getElementById('round-val').textContent = round;
+      document.getElementById('north-switch').classList.toggle('active',isNorthOnly);
+      document.getElementById('north-toggle-wrap').setAttribute('aria-checked',String(isNorthOnly));
+      document.getElementById('region-scope-label').textContent = isNorthOnly ? 'OMRÅDE: NORR OM STHLM' : 'OMRÅDE: HELA SVERIGE';
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===currentTab));
+      if (typeof L !== 'undefined') {
+        initMap();
+        new ResizeObserver(()=>map.invalidateSize()).observe(document.getElementById('map-wrapper'));
+        loadBoundariesFor(currentTab === 'befolkning' ? 'lan' : currentTab);
+      } else document.getElementById('map-status').textContent='Kartan kunde inte laddas. Anslut till internet och ladda om appen.';
+      if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('./sw.js').catch(()=>{});
+
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          switchTab(btn.getAttribute("data-tab"), btn);
+        });
+      });
+
+      document.getElementById("north-toggle-wrap").addEventListener("click", toggleNorthOnly);
+      document.getElementById("recenter-btn").addEventListener("click", centerOnDot);
+      document.getElementById("next-btn").addEventListener("click", nextQuestion);
+
+      setupQuestion();
+    });
+  </script>
+</body>
+</html>
